@@ -26,7 +26,7 @@ class Item extends StatelessWidget {
           Container(margin: EdgeInsets.only(right: 10.0)),
           thumbnail(_item.thumb),
           Container(margin: EdgeInsets.only(right: 20.0)),
-          detailsColumn(),
+          detailsColumn(_item),
         ],
       ),
     );
@@ -43,16 +43,16 @@ class Item extends StatelessWidget {
     );
   }
 
-  Widget detailsColumn() {
+  Widget detailsColumn(FoodItem item) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(margin: EdgeInsets.only(bottom: 10.0)),
-        title('BBQ Beef Burger'),
+        title(item.name),
         Container(margin: EdgeInsets.only(bottom: 5.0)),
-        stars(3),
+        stars(item.stars),
         Container(margin: EdgeInsets.only(bottom: 5.0)),
-        price(550),
+        price(item.price),
         Container(margin: EdgeInsets.only(bottom: 5.0)),
         addToCartBtn(),
       ],
@@ -76,7 +76,7 @@ class Item extends StatelessWidget {
     return Row(children: stars);
   }
 
-  Widget price(double value) {
+  Widget price(int value) {
     return Text(
       'KSH.$value',
       style: TextStyle(
