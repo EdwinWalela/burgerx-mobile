@@ -14,7 +14,7 @@ class App extends StatelessWidget {
             title: Text('Fast Food'),
             centerTitle: true,
             actions: [
-              Icon(Icons.shopping_cart_outlined),
+              Icon(Icons.shopping_bag_outlined),
               Container(margin: EdgeInsets.only(right: 10.0))
             ],
             bottom: TabBar(
