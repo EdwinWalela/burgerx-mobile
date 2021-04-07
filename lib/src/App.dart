@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screens/Burgers/Burgers.dart';
-import 'screens/Drinks/Drinks.dart';
-import 'screens/Meals/Meals.dart';
+import 'screens/Burgers.dart';
+import 'screens/Drinks.dart';
+import 'screens/Meals.dart';
 
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
