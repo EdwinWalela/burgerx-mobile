@@ -9,23 +9,51 @@ class Item extends StatelessWidget {
   }
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-      ),
       margin: EdgeInsets.all(10.0),
       child: Row(
         children: [
           thumbnail(_item.thumb),
+          detailsColumn(),
         ],
       ),
     );
   }
 
-  Widget thumbnail(thumb) {
-    return Image.network(
-      thumb,
-      width: 150,
-      height: 150,
+  Widget thumbnail(String thumb) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.0),
+      child: Image.network(
+        thumb,
+        width: 150,
+        height: 150,
+      ),
     );
+  }
+
+  Widget detailsColumn() {
+    return Column(
+      children: [
+        title('title'),
+        stars(3.5),
+        price(550),
+        addToCartBtn(),
+      ],
+    );
+  }
+
+  Widget addToCartBtn() {
+    return Text('Add to Cart');
+  }
+
+  Widget stars(double value) {
+    return Text('$value');
+  }
+
+  Widget price(double value) {
+    return Text('Ksh.$value');
+  }
+
+  Widget title(String title) {
+    return Text(title);
   }
 }
