@@ -8,6 +8,12 @@ class Burgers extends StatelessWidget {
     List<FoodItem> _items = [
       FoodItem('https://bit.ly/3wzTiVV', 'Beef BBQ Buger', 400, 3.5,
           'beef, BBQ sauce, guacamole'),
+      FoodItem('https://bit.ly/3wzTiVV', 'Beef BBQ Buger', 400, 3.5,
+          'beef, BBQ sauce, guacamole'),
+      FoodItem('https://bit.ly/3wzTiVV', 'Beef BBQ Buger', 400, 3.5,
+          'beef, BBQ sauce, guacamole'),
+      FoodItem('https://bit.ly/3wzTiVV', 'Beef BBQ Buger', 400, 3.5,
+          'beef, BBQ sauce, guacamole'),
     ];
     return Scaffold(
       body: ItemList(_items),
