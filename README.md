@@ -1,6 +1,4 @@
-# burgers
-
-A new Flutter project.
+# Burgerx
 
 ## Getting Started
 
