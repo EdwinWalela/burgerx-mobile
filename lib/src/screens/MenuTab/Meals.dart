@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/Food_Item.dart';
-import '../widgets/Item_list.dart';
+import '../../models/Food_Item.dart';
+import '../../widgets/Item_list.dart';
 
 class Meals extends StatelessWidget {
   Widget build(BuildContext context) {
