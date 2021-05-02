@@ -8,13 +8,13 @@ class MenuTab extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.shopping_bag_outlined),
+          onPressed: () {},
+        ),
         appBar: AppBar(
           title: Text('Fast Food'),
           centerTitle: true,
-          actions: [
-            Icon(Icons.shopping_bag_outlined),
-            Container(margin: EdgeInsets.only(right: 10.0))
-          ],
           bottom: TabBar(
             tabs: [
               Tab(icon: Icon(Icons.lunch_dining)),

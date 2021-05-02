@@ -6,7 +6,7 @@ class MenuAPIProvider {
   Client client = Client();
   String _baseURL = 'http://localhost:3000/api';
 
-  Future<List<FoodItem>> fetchMenu() async {
+  fetchMenu() async {
     var url = Uri.parse('$_baseURL/menu');
 
     final response = await client.get(url);
