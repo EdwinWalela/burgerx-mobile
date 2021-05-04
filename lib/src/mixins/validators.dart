@@ -49,4 +49,9 @@ class Validators {
       sink.addError('Something went wrong try again');
     }
   });
+
+  final validateLoadingStatus =
+      StreamTransformer<bool, bool>.fromHandlers(handleData: (isLoading, sink) {
+    sink.add(isLoading);
+  });
 }

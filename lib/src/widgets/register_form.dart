@@ -6,6 +6,18 @@ class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final RegisterBloc bloc = RegisterBlocProvider.of(context);
 
+    return Stack(
+      alignment: AlignmentDirectional.center,
+      children: [
+        // Center(
+        //   child: CircularProgressIndicator(),
+        // ),
+        buildForm(bloc),
+      ],
+    );
+  }
+
+  Widget buildForm(RegisterBloc bloc) {
     return Column(
       children: [
         buildNameInput(bloc),
@@ -184,6 +196,12 @@ class RegisterForm extends StatelessWidget {
     return InkWell(
       child: Text("Already have an account? Sign in"),
       onTap: () {},
+    );
+  }
+
+  Widget buildCircularProgress() {
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
 }

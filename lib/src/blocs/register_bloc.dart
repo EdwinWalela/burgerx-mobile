@@ -12,6 +12,7 @@ class RegisterBloc extends Validators {
   final _passwordConfirm = BehaviorSubject<String>();
   final _username = BehaviorSubject<String>();
   final _hasRegistered = BehaviorSubject<int>();
+  final _isLoading = BehaviorSubject<bool>.seeded(false);
 
   // getters
   Function(String) get changeUsername => _username.sink.add;
@@ -41,7 +42,13 @@ class RegisterBloc extends Validators {
   Stream<bool> get registered =>
       _hasRegistered.stream.transform(validateRegistrationStatus);
 
+  Function(bool) get changeLoading => _isLoading.sink.add;
+  Stream<bool> get isLoading =>
+      _isLoading.stream.transform(validateLoadingStatus);
+
   submit() async {
+    //@TODO: add 'true' to is_loading stream
+
     final userEmail = _email.value;
     final userPassword = _password.value;
     final userName = _username.value;
@@ -52,6 +59,8 @@ class RegisterBloc extends Validators {
     final httpCode = await _repository.registerUser(user);
 
     changeRegistered(httpCode); // add response to sink
+
+    //@TODO: add 'false' to is_loading stream
   }
 
   dispose() {
@@ -60,5 +69,6 @@ class RegisterBloc extends Validators {
     _password.close();
     _passwordConfirm.close();
     _hasRegistered.close();
+    _isLoading.close();
   }
 }
