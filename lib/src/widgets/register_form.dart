@@ -131,6 +131,7 @@ class RegisterForm extends StatelessWidget {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       ScaffoldMessenger.of(context).hideCurrentSnackBar();
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        duration: Duration(seconds: 8),
                         action: SnackBarAction(
                           label: 'Sign In',
                           onPressed: () {},
@@ -149,6 +150,7 @@ class RegisterForm extends StatelessWidget {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       ScaffoldMessenger.of(context).hideCurrentSnackBar();
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        duration: Duration(seconds: 8),
                         content: Text(
                           '${registeredSnapshot.error}',
                         ),
