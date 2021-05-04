@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import '../blocs/register_bloc_provider.dart';
 
 class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
+    final RegisterBloc bloc = RegisterBlocProvider.of(context);
     return Column(
       children: [
         buildNameInput(),
         Container(
           margin: EdgeInsets.only(top: 20),
         ),
-        buildEmailInput(),
+        buildEmailInput(bloc),
         Container(
           margin: EdgeInsets.only(top: 20),
         ),
@@ -32,12 +34,19 @@ class RegisterForm extends StatelessWidget {
     );
   }
 
-  Widget buildEmailInput() {
-    return TextField(
-      decoration: InputDecoration(
-        labelText: "Email Address",
-        hintText: "john@mail.com",
-      ),
+  Widget buildEmailInput(RegisterBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.email,
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        return TextField(
+          onChanged: bloc.changeEmail,
+          decoration: InputDecoration(
+            labelText: "Email Address",
+            hintText: "john@mail.com",
+            errorText: snapshot.error,
+          ),
+        );
+      },
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/page_header.dart';
 import '../widgets/register_form.dart';
+import '../blocs/register_bloc_provider.dart';
 
 class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -21,7 +22,9 @@ class RegisterScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 30),
             ),
-            RegisterForm()
+            RegisterBlocProvider(
+              child: RegisterForm(),
+            )
           ],
         ),
       ),
