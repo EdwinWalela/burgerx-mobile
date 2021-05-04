@@ -10,52 +10,80 @@ class RegisterForm extends StatelessWidget {
       stream: bloc.isLoading,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
-          print(snapshot.data);
           return Stack(
             children: [
               !snapshot.data
                   ? Container()
                   : Center(child: CircularProgressIndicator()),
-              buildForm(bloc)
+              buildForm(bloc, context)
             ],
           );
         } else {
           return Stack(
-            children: [buildForm(bloc)],
+            children: [buildForm(bloc, context)],
           );
         }
       },
     );
   }
 
-  Widget buildForm(RegisterBloc bloc) {
-    return Column(
-      children: [
-        buildNameInput(bloc),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-        ),
-        buildEmailInput(bloc),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-        ),
-        buildPasswordInput(bloc),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-        ),
-        buildConfirmPasswordInput(bloc),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-        ),
-        buildRegisterButton(bloc),
-        Container(
-          margin: EdgeInsets.only(top: 10),
-        ),
-        buildExistingUser(),
-      ],
+  Widget buildForm(RegisterBloc bloc, BuildContext context) {
+    return StreamBuilder(
+      stream: bloc.registered,
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                duration: Duration(seconds: 8),
+                content: Text(
+                  'Registration Successful',
+                ),
+              ));
+            },
+          );
+        } else if (snapshot.hasError) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                duration: Duration(seconds: 8),
+                content: Text(
+                  '${snapshot.error}',
+                ),
+              ));
+            },
+          );
+        }
+
+        return Column(
+          children: [
+            buildNameInput(bloc),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+            ),
+            buildEmailInput(bloc),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+            ),
+            buildPasswordInput(bloc),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+            ),
+            buildConfirmPasswordInput(bloc),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+            ),
+            buildRegisterButton(bloc),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+            ),
+            buildExistingUser(),
+          ],
+        );
+      },
     );
   }
 
@@ -145,54 +173,9 @@ class RegisterForm extends StatelessWidget {
             onPressed: !snaphot.hasData ? null : bloc.submit,
             child: Padding(
               padding: EdgeInsets.all(10),
-              child: StreamBuilder(
-                stream: bloc.registered,
-                builder:
-                    (BuildContext context, AsyncSnapshot registeredSnapshot) {
-                  if (registeredSnapshot.hasData) {
-                    // Registration successful
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        duration: Duration(seconds: 8),
-                        action: SnackBarAction(
-                          label: 'Sign In',
-                          onPressed: () {},
-                        ),
-                        content: Text(
-                          'Registration Successful',
-                        ),
-                      ));
-                    });
-                    return Text(
-                      'Register',
-                      style: TextStyle(fontSize: 15.0),
-                    );
-                  } else if (registeredSnapshot.hasError) {
-                    // Registration error
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        duration: Duration(seconds: 8),
-                        content: Text(
-                          '${registeredSnapshot.error}',
-                        ),
-                        action: SnackBarAction(
-                          label: 'Sign In',
-                          onPressed: () {},
-                        ),
-                      ));
-                    });
-                    return Text(
-                      'Register',
-                      style: TextStyle(fontSize: 15.0),
-                    );
-                  } else {
-                    // Form not submitted
-                    return Text(
-                      'Register',
-                      style: TextStyle(fontSize: 15.0),
-                    );
-                  }
-                },
+              child: Text(
+                'Register',
+                style: TextStyle(fontSize: 15.0),
               ),
             ),
           );

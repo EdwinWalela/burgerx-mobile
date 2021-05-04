@@ -8,14 +8,22 @@ class RegisterBloc extends Validators {
 
   // StreamControllers
   final _email = BehaviorSubject<String>();
+
   final _password = BehaviorSubject<String>();
+
   final _passwordConfirm = BehaviorSubject<String>();
+
   final _username = BehaviorSubject<String>();
-  final _hasRegistered = BehaviorSubject<int>();
-  final _isLoading = BehaviorSubject<bool>.seeded(false);
+
+  final _hasRegisteredSender = PublishSubject<int>();
+  final _hasRegistered = BehaviorSubject<bool>();
+
+  final _isLoading = BehaviorSubject<bool>();
 
   RegisterBloc() {
-    _isLoading.sink.add(false);
+    _hasRegisteredSender.stream
+        .transform(validateRegistrationStatus)
+        .pipe(_hasRegistered);
   }
 
   // getters
@@ -42,9 +50,8 @@ class RegisterBloc extends Validators {
   Stream<bool> get formValid => Rx.combineLatest(
       [email, username, password, confirmPassword], (values) => true);
 
-  Function(int) get changeRegistered => _hasRegistered.sink.add;
-  Stream<bool> get registered =>
-      _hasRegistered.stream.transform(validateRegistrationStatus);
+  Function(int) get changeRegistered => _hasRegisteredSender.sink.add;
+  Stream<bool> get registered => _hasRegistered.stream;
 
   Function(bool) get changeLoading => _isLoading.sink.add;
   Stream<bool> get isLoading =>
@@ -75,6 +82,7 @@ class RegisterBloc extends Validators {
     _password.close();
     _passwordConfirm.close();
     _hasRegistered.close();
+    _hasRegisteredSender.close();
     _isLoading.close();
   }
 }
