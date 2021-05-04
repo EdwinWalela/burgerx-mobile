@@ -1,6 +1,14 @@
 import 'dart:async';
 
 class Validators {
+  final validateUserName = StreamTransformer<String, String>.fromHandlers(
+      handleData: (username, sink) {
+    if (username.length > 1) {
+      sink.add(username);
+    } else {
+      sink.addError("A valid username is required");
+    }
+  });
   final validateEmail = StreamTransformer<String, String>.fromHandlers(
     handleData: (email, sink) {
       if (email.contains('@') &&

@@ -6,7 +6,7 @@ class RegisterForm extends StatelessWidget {
     final RegisterBloc bloc = RegisterBlocProvider.of(context);
     return Column(
       children: [
-        buildNameInput(),
+        buildNameInput(bloc),
         Container(
           margin: EdgeInsets.only(top: 20),
         ),
@@ -52,13 +52,20 @@ class RegisterForm extends StatelessWidget {
     );
   }
 
-  Widget buildNameInput() {
-    return TextField(
-      decoration: InputDecoration(
-        prefixIcon: Icon(Icons.person),
-        labelText: "Username",
-        hintText: "John",
-      ),
+  Widget buildNameInput(RegisterBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.username,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return TextField(
+          onChanged: bloc.changeUsername,
+          decoration: InputDecoration(
+            prefixIcon: Icon(Icons.person),
+            labelText: "Username",
+            hintText: "John",
+            errorText: snapshot.error,
+          ),
+        );
+      },
     );
   }
 

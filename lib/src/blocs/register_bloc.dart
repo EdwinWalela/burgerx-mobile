@@ -6,8 +6,13 @@ class RegisterBloc extends Validators {
   final _email = BehaviorSubject<String>();
   final _password = BehaviorSubject<String>();
   final _passwordConfirm = BehaviorSubject<String>();
+  final _username = BehaviorSubject<String>();
 
   // getters
+
+  Function(String) get changeUsername => _username.sink.add;
+  Stream<String> get username => _username.stream.transform(validateUserName);
+
   Function(String) get changeEmail => _email.sink.add; // add to sink
   Stream<String> get email =>
       _email.stream.transform(validateEmail); // listen to stream
@@ -25,11 +30,12 @@ class RegisterBloc extends Validators {
         },
       );
 
-  Stream<bool> get formValid =>
-      Rx.combineLatest([email, password, confirmPassword], (values) => true);
+  Stream<bool> get formValid => Rx.combineLatest(
+      [email, username, password, confirmPassword], (values) => true);
 
   dispose() {
     _email.close();
+    _username.close();
     _password.close();
     _passwordConfirm.close();
   }
