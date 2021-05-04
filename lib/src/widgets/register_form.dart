@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../blocs/register_bloc_provider.dart';
 
 class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final RegisterBloc bloc = RegisterBlocProvider.of(context);
+
     return Column(
       children: [
         buildNameInput(bloc),
@@ -29,7 +31,7 @@ class RegisterForm extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 10),
         ),
-        buildExistingUser()
+        buildExistingUser(),
       ],
     );
   }
@@ -120,9 +122,54 @@ class RegisterForm extends StatelessWidget {
             onPressed: !snaphot.hasData ? null : bloc.submit,
             child: Padding(
               padding: EdgeInsets.all(10),
-              child: Text(
-                'Register',
-                style: TextStyle(fontSize: 15.0),
+              child: StreamBuilder(
+                stream: bloc.registered,
+                builder:
+                    (BuildContext context, AsyncSnapshot registeredSnapshot) {
+                  if (registeredSnapshot.hasData) {
+                    // Registration successful
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        action: SnackBarAction(
+                          label: 'Sign In',
+                          onPressed: () {},
+                        ),
+                        content: Text(
+                          'Registration Successful',
+                        ),
+                      ));
+                    });
+                    return Text(
+                      'Register',
+                      style: TextStyle(fontSize: 15.0),
+                    );
+                  } else if (registeredSnapshot.hasError) {
+                    // Registration error
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          '${registeredSnapshot.error}',
+                        ),
+                        action: SnackBarAction(
+                          label: 'Sign In',
+                          onPressed: () {},
+                        ),
+                      ));
+                    });
+                    return Text(
+                      'Register',
+                      style: TextStyle(fontSize: 15.0),
+                    );
+                  } else {
+                    // Form not submitted
+                    return Text(
+                      'Register',
+                      style: TextStyle(fontSize: 15.0),
+                    );
+                  }
+                },
               ),
             ),
           );

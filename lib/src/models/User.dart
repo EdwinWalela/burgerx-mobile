@@ -5,7 +5,7 @@ class User {
   String mobile;
   String password;
 
-  User(this.username, this.email, this.address, this.mobile);
+  User({this.username, this.email, this.address, this.mobile, this.password});
 
   User.fromJson(parsedJson) {
     username = parsedJson['name'];

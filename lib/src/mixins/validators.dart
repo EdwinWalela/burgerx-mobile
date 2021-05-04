@@ -9,6 +9,7 @@ class Validators {
       sink.addError("A valid username is required");
     }
   });
+
   final validateEmail = StreamTransformer<String, String>.fromHandlers(
     handleData: (email, sink) {
       if (email.contains('@') &&
@@ -37,4 +38,15 @@ class Validators {
       sink.add(password);
     },
   );
+
+  final validateRegistrationStatus =
+      StreamTransformer<int, bool>.fromHandlers(handleData: (httpCode, sink) {
+    if (httpCode == 201) {
+      sink.add(true);
+    } else if (httpCode == 401) {
+      sink.addError('Email is already registered. Sign in');
+    } else {
+      sink.addError('Something went wrong try again');
+    }
+  });
 }

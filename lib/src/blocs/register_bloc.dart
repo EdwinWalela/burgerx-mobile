@@ -1,15 +1,19 @@
+import 'package:burgers/src/models/User.dart';
 import 'package:rxdart/rxdart.dart';
 import '../mixins/validators.dart';
+import '../resources/repository.dart';
 
 class RegisterBloc extends Validators {
+  final _repository = Repository();
+
   // StreamControllers
   final _email = BehaviorSubject<String>();
   final _password = BehaviorSubject<String>();
   final _passwordConfirm = BehaviorSubject<String>();
   final _username = BehaviorSubject<String>();
+  final _hasRegistered = BehaviorSubject<int>();
 
   // getters
-
   Function(String) get changeUsername => _username.sink.add;
   Stream<String> get username => _username.stream.transform(validateUserName);
 
@@ -33,13 +37,21 @@ class RegisterBloc extends Validators {
   Stream<bool> get formValid => Rx.combineLatest(
       [email, username, password, confirmPassword], (values) => true);
 
-  submit() {
+  Function(int) get changeRegistered => _hasRegistered.sink.add;
+  Stream<bool> get registered =>
+      _hasRegistered.stream.transform(validateRegistrationStatus);
+
+  submit() async {
     final userEmail = _email.value;
     final userPassword = _password.value;
     final userName = _username.value;
-    print(userEmail);
-    print(userPassword);
-    print(userName);
+
+    final User user =
+        User(email: userEmail, password: userPassword, username: userName);
+
+    final httpCode = await _repository.registerUser(user);
+
+    changeRegistered(httpCode); // add response to sink
   }
 
   dispose() {
@@ -47,5 +59,6 @@ class RegisterBloc extends Validators {
     _username.close();
     _password.close();
     _passwordConfirm.close();
+    _hasRegistered.close();
   }
 }
