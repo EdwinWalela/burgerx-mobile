@@ -117,7 +117,7 @@ class RegisterForm extends StatelessWidget {
         stream: bloc.formValid,
         builder: (BuildContext context, AsyncSnapshot<bool> snaphot) {
           return ElevatedButton(
-            onPressed: !snaphot.hasData ? null : () {},
+            onPressed: !snaphot.hasData ? null : bloc.submit,
             child: Padding(
               padding: EdgeInsets.all(10),
               child: Text(
