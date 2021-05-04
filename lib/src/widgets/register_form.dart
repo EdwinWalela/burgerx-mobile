@@ -9,15 +9,21 @@ class RegisterForm extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.isLoading,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        print(snapshot.data);
-        return Stack(
-          children: [
-            !snapshot.data
-                ? Container()
-                : Center(child: CircularProgressIndicator()),
-            buildForm(bloc)
-          ],
-        );
+        if (snapshot.hasData) {
+          print(snapshot.data);
+          return Stack(
+            children: [
+              !snapshot.data
+                  ? Container()
+                  : Center(child: CircularProgressIndicator()),
+              buildForm(bloc)
+            ],
+          );
+        } else {
+          return Stack(
+            children: [buildForm(bloc)],
+          );
+        }
       },
     );
   }
@@ -146,7 +152,6 @@ class RegisterForm extends StatelessWidget {
                   if (registeredSnapshot.hasData) {
                     // Registration successful
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         duration: Duration(seconds: 8),
                         action: SnackBarAction(
@@ -165,7 +170,6 @@ class RegisterForm extends StatelessWidget {
                   } else if (registeredSnapshot.hasError) {
                     // Registration error
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         duration: Duration(seconds: 8),
                         content: Text(

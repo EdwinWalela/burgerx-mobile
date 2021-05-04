@@ -14,6 +14,10 @@ class RegisterBloc extends Validators {
   final _hasRegistered = BehaviorSubject<int>();
   final _isLoading = BehaviorSubject<bool>.seeded(false);
 
+  RegisterBloc() {
+    _isLoading.sink.add(false);
+  }
+
   // getters
   Function(String) get changeUsername => _username.sink.add;
   Stream<String> get username => _username.stream.transform(validateUserName);
