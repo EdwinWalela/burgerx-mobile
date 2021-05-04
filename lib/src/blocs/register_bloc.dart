@@ -9,7 +9,11 @@ class RegisterBloc extends Validators {
 
   // getters
   Function(String) get changeEmail => _email.sink.add; // add to sink
-  get email => _email.stream.transform(validateEmail); // listen to stream
+  Stream<String> get email =>
+      _email.stream.transform(validateEmail); // listen to stream
+
+  Function(String) get changePassword => _password.sink.add;
+  Stream<String> get password => _password.stream.transform(validatePassword);
 
   dispose() {
     _email.close();
