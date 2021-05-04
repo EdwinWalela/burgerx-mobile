@@ -42,6 +42,7 @@ class RegisterForm extends StatelessWidget {
           onChanged: bloc.changeEmail,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
+            prefixIcon: Icon(Icons.email),
             labelText: "Email Address",
             hintText: "john@mail.com",
             errorText: snapshot.error,
@@ -54,6 +55,7 @@ class RegisterForm extends StatelessWidget {
   Widget buildNameInput() {
     return TextField(
       decoration: InputDecoration(
+        prefixIcon: Icon(Icons.person),
         labelText: "Username",
         hintText: "John",
       ),
@@ -68,6 +70,7 @@ class RegisterForm extends StatelessWidget {
           onChanged: bloc.changePassword,
           obscureText: true,
           decoration: InputDecoration(
+            prefixIcon: Icon(Icons.lock),
             labelText: "Password",
             errorText: snapshot.error,
           ),
@@ -84,7 +87,8 @@ class RegisterForm extends StatelessWidget {
           onChanged: bloc.changeConfirmPassword,
           obscureText: true,
           decoration: InputDecoration(
-            labelText: "Password",
+            prefixIcon: Icon(Icons.lock),
+            labelText: "Confirm Password",
             errorText: snapshot.error,
           ),
         );
