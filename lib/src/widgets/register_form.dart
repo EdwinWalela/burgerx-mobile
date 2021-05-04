@@ -6,14 +6,19 @@ class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final RegisterBloc bloc = RegisterBlocProvider.of(context);
 
-    return Stack(
-      alignment: AlignmentDirectional.center,
-      children: [
-        // Center(
-        //   child: CircularProgressIndicator(),
-        // ),
-        buildForm(bloc),
-      ],
+    return StreamBuilder(
+      stream: bloc.isLoading,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        print(snapshot.data);
+        return Stack(
+          children: [
+            !snapshot.data
+                ? Container()
+                : Center(child: CircularProgressIndicator()),
+            buildForm(bloc)
+          ],
+        );
+      },
     );
   }
 

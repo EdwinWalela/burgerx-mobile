@@ -48,6 +48,7 @@ class RegisterBloc extends Validators {
 
   submit() async {
     //@TODO: add 'true' to is_loading stream
+    changeLoading(true);
 
     final userEmail = _email.value;
     final userPassword = _password.value;
@@ -61,6 +62,7 @@ class RegisterBloc extends Validators {
     changeRegistered(httpCode); // add response to sink
 
     //@TODO: add 'false' to is_loading stream
+    changeLoading(false);
   }
 
   dispose() {
