@@ -1,3 +1,4 @@
+import 'package:burgers/src/screens/Login.dart';
 import 'package:flutter/material.dart';
 // import './screens/MenuTab/MenuTab.dart';
 // import './screens/Login.dart';
@@ -8,6 +9,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: RegisterScreen(),
+      // home: LoginScreen(),
     );
   }
 }

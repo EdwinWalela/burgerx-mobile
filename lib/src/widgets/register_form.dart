@@ -72,10 +72,10 @@ class RegisterForm extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.all(10),
           child: Text(
             'Register',
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(fontSize: 15.0),
           ),
         ),
       ),
