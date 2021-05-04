@@ -40,6 +40,7 @@ class RegisterForm extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         return TextField(
           onChanged: bloc.changeEmail,
+          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: "Email Address",
             hintText: "john@mail.com",

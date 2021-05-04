@@ -6,8 +6,9 @@ import '../blocs/register_bloc_provider.dart';
 class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
+        // resizeToAvoidBottomInset: false,
+        body: SingleChildScrollView(
+      child: Padding(
         padding: EdgeInsets.only(left: 30, right: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,6 +29,6 @@ class RegisterScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }
