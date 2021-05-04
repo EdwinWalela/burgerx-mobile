@@ -18,7 +18,7 @@ class RegisterForm extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 20),
         ),
-        buildPasswordInput(bloc),
+        buildConfirmPasswordInput(bloc),
         Container(
           margin: EdgeInsets.only(top: 20),
         ),
@@ -65,6 +65,22 @@ class RegisterForm extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         return TextField(
           onChanged: bloc.changePassword,
+          obscureText: true,
+          decoration: InputDecoration(
+            labelText: "Password",
+            errorText: snapshot.error,
+          ),
+        );
+      },
+    );
+  }
+
+  Widget buildConfirmPasswordInput(RegisterBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.confirmPassword,
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        return TextField(
+          onChanged: bloc.changeConfirmPassword,
           obscureText: true,
           decoration: InputDecoration(
             labelText: "Password",

@@ -22,4 +22,11 @@ class Validators {
       }
     },
   );
+
+  final validateConfirmPassword =
+      StreamTransformer<String, String>.fromHandlers(
+    handleData: (password, sink) {
+      sink.add(password);
+    },
+  );
 }

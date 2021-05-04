@@ -15,6 +15,16 @@ class RegisterBloc extends Validators {
   Function(String) get changePassword => _password.sink.add;
   Stream<String> get password => _password.stream.transform(validatePassword);
 
+  Function(String) get changeConfirmPassword => _passwordConfirm.sink.add;
+  Stream<String> get confirmPassword =>
+      _passwordConfirm.stream.transform(validateConfirmPassword).doOnData(
+        (String password) {
+          if (0 != _password.value.compareTo(password)) {
+            _passwordConfirm.addError("Passwords don't match");
+          }
+        },
+      );
+
   dispose() {
     _email.close();
     _password.close();
