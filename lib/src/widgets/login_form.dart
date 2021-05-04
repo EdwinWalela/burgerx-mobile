@@ -21,7 +21,7 @@ class LoginForm extends StatelessWidget {
         ),
         buildLoginButton(),
         Container(
-          margin: EdgeInsets.only(top: 40),
+          margin: EdgeInsets.only(top: 30),
         ),
         buildNewUser()
       ],

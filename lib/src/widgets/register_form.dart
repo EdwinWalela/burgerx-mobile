@@ -27,7 +27,7 @@ class RegisterForm extends StatelessWidget {
         ),
         buildRegisterButton(),
         Container(
-          margin: EdgeInsets.only(top: 20),
+          margin: EdgeInsets.only(top: 10),
         ),
         buildExistingUser()
       ],
