@@ -25,6 +25,9 @@ class RegisterBloc extends Validators {
         },
       );
 
+  Stream<bool> get formValid =>
+      Rx.combineLatest([email, password, confirmPassword], (values) => true);
+
   dispose() {
     _email.close();
     _password.close();

@@ -25,7 +25,7 @@ class RegisterForm extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 20),
         ),
-        buildRegisterButton(),
+        buildRegisterButton(bloc),
         Container(
           margin: EdgeInsets.only(top: 10),
         ),
@@ -103,18 +103,23 @@ class RegisterForm extends StatelessWidget {
     );
   }
 
-  Widget buildRegisterButton() {
+  Widget buildRegisterButton(RegisterBloc bloc) {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {},
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Text(
-            'Register',
-            style: TextStyle(fontSize: 15.0),
-          ),
-        ),
+      child: StreamBuilder(
+        stream: bloc.formValid,
+        builder: (BuildContext context, AsyncSnapshot<bool> snaphot) {
+          return ElevatedButton(
+            onPressed: !snaphot.hasData ? null : () {},
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                'Register',
+                style: TextStyle(fontSize: 15.0),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
