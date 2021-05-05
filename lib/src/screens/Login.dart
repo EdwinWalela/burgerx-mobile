@@ -4,7 +4,20 @@ import '../widgets/login_form.dart';
 import '../blocs/login_bloc_provider.dart';
 
 class LoginScreen extends StatelessWidget {
+  String getGreeting(int hr) {
+    if (hr < 12) {
+      return "Good Morning,";
+    } else if (hr < 16) {
+      return "Good Afternoon,";
+    } else {
+      return "Good Evening,";
+    }
+  }
+
   Widget build(BuildContext context) {
+    int hour = DateTime.now().hour;
+    String greeting = getGreeting(hour);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -16,7 +29,7 @@ class LoginScreen extends StatelessWidget {
                 margin: EdgeInsets.only(top: 60),
               ),
               PageHeader(
-                title: "Welcome,",
+                title: greeting,
                 subtitle: "Sign in to continue",
               ),
               Container(
