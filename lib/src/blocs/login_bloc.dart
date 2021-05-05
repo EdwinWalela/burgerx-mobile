@@ -15,7 +15,7 @@ class LoginBloc extends Validators {
   Function(String) get changeEmail => _email.sink.add;
   Stream<String> get email => _email.stream.transform(validateEmail);
 
-  Function(String) get changePasswrod => _password.sink.add;
+  Function(String) get changePassword => _password.sink.add;
   Stream<String> get password =>
       _password.stream.transform(validatePasswordLogin);
 
@@ -25,6 +25,11 @@ class LoginBloc extends Validators {
   submit() async {
     final String email = _email.value;
     final String password = _password.value;
+
+    final User user = User(email: email, password: password);
+    final int httpCode = await _repository.authUser(user);
+
+    print(httpCode);
   }
 
   dispose() {

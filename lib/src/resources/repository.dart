@@ -9,4 +9,9 @@ class Repository {
     final httpCode = await apiProvider.registerUser(user);
     return httpCode;
   }
+
+  Future<int> authUser(User user) async {
+    final httpCode = await apiProvider.authUser(user);
+    return httpCode;
+  }
 }

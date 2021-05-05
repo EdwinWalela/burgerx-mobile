@@ -33,7 +33,7 @@ class AuthAPIProvider {
     );
 
     // if 200 store user+token in local db
-
+    print(response.body);
     return response.statusCode;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/page_header.dart';
 import '../widgets/login_form.dart';
+import '../blocs/login_bloc_provider.dart';
 
 class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -21,7 +22,9 @@ class LoginScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 50),
             ),
-            LoginForm()
+            LoginBlocProvider(
+              child: LoginForm(),
+            )
           ],
         ),
       ),
