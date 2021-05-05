@@ -11,29 +11,52 @@ class LoginForm extends StatelessWidget {
   }
 
   Widget buildForm(LoginBloc bloc, BuildContext context) {
-    return Column(
-      children: [
-        buildEmailInput(bloc),
-        Container(
-          margin: EdgeInsets.only(top: 30),
-        ),
-        buildPasswordInput(bloc),
-        Container(
-          margin: EdgeInsets.only(top: 30),
-        ),
-        Align(
-          child: buildForgotPassword(),
-          alignment: Alignment.centerRight,
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 40),
-        ),
-        buildLoginButton(bloc),
-        Container(
-          margin: EdgeInsets.only(top: 30),
-        ),
-        buildNewUser()
-      ],
+    return StreamBuilder(
+      stream: bloc.loggedIn,
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          // @TODO: redirect to menu page
+        } else if (snapshot.hasError) {
+          //
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  duration: Duration(seconds: 8),
+                  content: Text(
+                    '${snapshot.error}',
+                  ),
+                ),
+              );
+            },
+          );
+        }
+        return Column(
+          children: [
+            buildEmailInput(bloc),
+            Container(
+              margin: EdgeInsets.only(top: 30),
+            ),
+            buildPasswordInput(bloc),
+            Container(
+              margin: EdgeInsets.only(top: 30),
+            ),
+            Align(
+              child: buildForgotPassword(),
+              alignment: Alignment.centerRight,
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 40),
+            ),
+            buildLoginButton(bloc),
+            Container(
+              margin: EdgeInsets.only(top: 30),
+            ),
+            buildNewUser()
+          ],
+        );
+      },
     );
   }
 
