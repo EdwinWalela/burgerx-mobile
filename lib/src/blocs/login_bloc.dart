@@ -14,6 +14,8 @@ class LoginBloc extends Validators {
   final _loginSender = PublishSubject<int>();
   final _loginReciever = BehaviorSubject<bool>();
 
+  final _isLoading = BehaviorSubject<bool>();
+
   LoginBloc() {
     _loginSender.stream.transform(validateLoginStatus).pipe(_loginReciever);
   }
@@ -32,7 +34,12 @@ class LoginBloc extends Validators {
   Function(int) get changeLoginStatus => _loginSender.sink.add;
   Stream<bool> get loggedIn => _loginReciever.stream;
 
+  Function(bool) get changeLoading => _isLoading.sink.add;
+  Stream<bool> get isLoading =>
+      _isLoading.stream.transform(validateLoadingStatus);
+
   submit() async {
+    changeLoading(true);
     final String email = _email.value;
     final String password = _password.value;
 
@@ -40,10 +47,14 @@ class LoginBloc extends Validators {
     final int httpCode = await _repository.authUser(user);
 
     changeLoginStatus(httpCode);
+    changeLoading(false);
   }
 
   dispose() {
     _email.close();
     _password.close();
+    _loginSender.close();
+    _loginReciever.close();
+    _isLoading.close();
   }
 }

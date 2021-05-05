@@ -72,7 +72,6 @@ class RegisterBloc extends Validators {
 
     changeRegistered(httpCode); // add response to sink
 
-    //@TODO: add 'false' to is_loading stream
     changeLoading(false);
   }
 

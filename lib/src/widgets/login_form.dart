@@ -5,8 +5,24 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginBloc bloc = LoginBlocProvider.of(context);
 
-    return Stack(
-      children: [buildForm(bloc, context)],
+    return StreamBuilder(
+      stream: bloc.isLoading,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          return Stack(
+            children: [
+              !snapshot.data
+                  ? Container()
+                  : Center(child: CircularProgressIndicator()),
+              buildForm(bloc, context)
+            ],
+          );
+        } else {
+          return Stack(
+            children: [buildForm(bloc, context)],
+          );
+        }
+      },
     );
   }
 
@@ -23,7 +39,7 @@ class LoginForm extends StatelessWidget {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  duration: Duration(seconds: 8),
+                  // duration: Duration(seconds: 4),
                   content: Text(
                     '${snapshot.error}',
                   ),
