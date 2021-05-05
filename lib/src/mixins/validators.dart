@@ -32,6 +32,11 @@ class Validators {
     },
   );
 
+  final validatePasswordLogin = StreamTransformer<String, String>.fromHandlers(
+      handleData: (password, sink) {
+    sink.add(password);
+  });
+
   final validateConfirmPassword =
       StreamTransformer<String, String>.fromHandlers(
     handleData: (password, sink) {

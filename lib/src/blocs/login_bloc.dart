@@ -16,7 +16,11 @@ class LoginBloc extends Validators {
   Stream<String> get email => _email.stream.transform(validateEmail);
 
   Function(String) get changePasswrod => _password.sink.add;
-  Stream<String> get password => _password.stream.transform(validatePassword);
+  Stream<String> get password =>
+      _password.stream.transform(validatePasswordLogin);
+
+  Stream<bool> get formValid =>
+      Rx.combineLatest2(email, password, (a, b) => true);
 
   dispose() {
     _email.close();
