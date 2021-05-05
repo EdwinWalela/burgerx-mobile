@@ -22,6 +22,11 @@ class LoginBloc extends Validators {
   Stream<bool> get formValid =>
       Rx.combineLatest2(email, password, (a, b) => true);
 
+  submit() async {
+    final String email = _email.value;
+    final String password = _password.value;
+  }
+
   dispose() {
     _email.close();
     _password.close();
