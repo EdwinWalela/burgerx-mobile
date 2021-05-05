@@ -34,6 +34,7 @@ class RegisterForm extends StatelessWidget {
         if (snapshot.hasData) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 duration: Duration(seconds: 8),
                 content: Text(
@@ -45,6 +46,7 @@ class RegisterForm extends StatelessWidget {
         } else if (snapshot.hasError) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 duration: Duration(seconds: 8),
                 content: Text(

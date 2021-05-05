@@ -11,6 +11,13 @@ class LoginBloc extends Validators {
   final _email = BehaviorSubject<String>();
   final _password = BehaviorSubject<String>();
 
+  final _loginSender = PublishSubject<int>();
+  final _loginReciever = BehaviorSubject<bool>();
+
+  LoginBloc() {
+    _loginSender.stream.transform(validateRegistrationStatus);
+  }
+
   // Getters
   Function(String) get changeEmail => _email.sink.add;
   Stream<String> get email => _email.stream.transform(validateEmail);
