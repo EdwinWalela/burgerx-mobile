@@ -55,7 +55,7 @@ class Validators {
     }
   });
 
-  final validateLodingStatus =
+  final validateLoginStatus =
       StreamTransformer<int, bool>.fromHandlers(handleData: (httpCode, sink) {
     if (httpCode == 200) {
       sink.add(true);
@@ -65,6 +65,7 @@ class Validators {
       sink.addError('Something went wrong, Try Again');
     }
   });
+
   final validateLoadingStatus =
       StreamTransformer<bool, bool>.fromHandlers(handleData: (isLoading, sink) {
     sink.add(isLoading);

@@ -15,7 +15,7 @@ class LoginBloc extends Validators {
   final _loginReciever = BehaviorSubject<bool>();
 
   LoginBloc() {
-    _loginSender.stream.transform(validateRegistrationStatus);
+    _loginSender.stream.transform(validateLoginStatus).pipe(_loginReciever);
   }
 
   // Getters
@@ -28,6 +28,9 @@ class LoginBloc extends Validators {
 
   Stream<bool> get formValid =>
       Rx.combineLatest2(email, password, (a, b) => true);
+
+  Function(int) get changeLoginStatus => _loginSender.sink.add;
+  Stream<bool> get loggedIn => _loginReciever.stream;
 
   submit() async {
     final String email = _email.value;
