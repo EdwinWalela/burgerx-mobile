@@ -6,7 +6,6 @@ import '../blocs/register_bloc_provider.dart';
 class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-        // resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(left: 30, right: 30),

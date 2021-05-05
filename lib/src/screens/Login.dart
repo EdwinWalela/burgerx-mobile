@@ -6,26 +6,27 @@ import '../blocs/login_bloc_provider.dart';
 class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: EdgeInsets.only(left: 30, right: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 60),
-            ),
-            PageHeader(
-              title: "Welcome,",
-              subtitle: "Sign in to continue",
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 50),
-            ),
-            LoginBlocProvider(
-              child: LoginForm(),
-            )
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 30, right: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 60),
+              ),
+              PageHeader(
+                title: "Welcome,",
+                subtitle: "Sign in to continue",
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 50),
+              ),
+              LoginBlocProvider(
+                child: LoginForm(),
+              )
+            ],
+          ),
         ),
       ),
     );
