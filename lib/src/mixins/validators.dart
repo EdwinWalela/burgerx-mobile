@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../models/User.dart';
 
 class Validators {
   final validateUserName = StreamTransformer<String, String>.fromHandlers(
@@ -55,17 +56,28 @@ class Validators {
     }
   });
 
-  final validateLoginStatus =
-      StreamTransformer<int, bool>.fromHandlers(handleData: (httpCode, sink) {
-    if (httpCode == 200) {
-      sink.add(true);
-    } else {
-      sink.addError('Incorrect Combination, Try Again');
-    }
-  });
+  final validateLoginStatus = StreamTransformer<int, bool>.fromHandlers(
+    handleData: (httpCode, sink) {
+      if (httpCode == 200) {
+        sink.add(true);
+      } else {
+        sink.addError('Incorrect Combination, Try Again');
+      }
+    },
+  );
 
   final validateLoadingStatus =
       StreamTransformer<bool, bool>.fromHandlers(handleData: (isLoading, sink) {
     sink.add(isLoading);
   });
+
+  final passUser = StreamTransformer<User, User>.fromHandlers(
+    handleData: (user, sink) {
+      if (user != null) {
+        sink.add(user);
+      } else {
+        sink.addError('no user');
+      }
+    },
+  );
 }

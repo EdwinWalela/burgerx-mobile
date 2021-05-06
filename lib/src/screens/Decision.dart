@@ -11,11 +11,14 @@ class DecisionScreen extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.user,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        final result = snapshot.data;
-
-        if (result != null) {
-          _redirect(context, MenuTab());
-        } else {
+        if (snapshot.hasData) {
+          if (snapshot.data != null) {
+            _redirect(context, MenuTab());
+          } else {
+            _redirect(context, LoginScreen());
+          }
+        }
+        if (snapshot.hasError) {
           _redirect(context, LoginScreen());
         }
 

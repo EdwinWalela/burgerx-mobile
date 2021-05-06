@@ -17,11 +17,11 @@ class User {
   }
 
   User.fromDB(Map<String, dynamic> parsedJson) {
-    username = parsedJson['name'];
-    email = parsedJson['email'];
-    address = parsedJson['address'];
-    mobile = parsedJson['mobile'];
-    token = parsedJson['token'];
+    username = parsedJson['name'] ?? '';
+    email = parsedJson['email'] ?? '';
+    address = parsedJson['address'] ?? '';
+    mobile = parsedJson['mobile'] ?? '';
+    token = parsedJson['token'] ?? '';
   }
 
   Map<String, String> toMap() {
