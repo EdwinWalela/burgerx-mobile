@@ -1,5 +1,5 @@
 import 'dart:convert';
-import './menu_api_provider.dart';
+// import './menu_api_provider.dart';
 import './auth_api_provider.dart';
 import './db_provider.dart';
 import '../models/User.dart';
@@ -25,5 +25,14 @@ class Repository {
     }
 
     return response.statusCode;
+  }
+
+  Future<User> fetchUser() async {
+    final user = await dbProvider.fetchUser();
+    if (user != null) {
+      print(user);
+      return user;
+    }
+    return null;
   }
 }
