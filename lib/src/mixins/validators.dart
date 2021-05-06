@@ -59,10 +59,8 @@ class Validators {
       StreamTransformer<int, bool>.fromHandlers(handleData: (httpCode, sink) {
     if (httpCode == 200) {
       sink.add(true);
-    } else if (httpCode == 401) {
-      sink.addError('Incorrect Combination, Try Again');
     } else {
-      sink.addError('Something went wrong, Try Again');
+      sink.addError('Incorrect Combination, Try Again');
     }
   });
 

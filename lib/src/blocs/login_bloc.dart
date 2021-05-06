@@ -44,7 +44,6 @@ class LoginBloc extends Validators {
 
     final User user = User(email: email, password: password);
     final int httpCode = await _repository.authUser(user);
-
     changeLoginStatus(httpCode);
     changeLoading(false);
   }
