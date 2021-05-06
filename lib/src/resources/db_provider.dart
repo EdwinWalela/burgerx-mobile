@@ -8,9 +8,7 @@ import '../models/User.dart';
 class DbProvider {
   Database db;
 
-  DbProvider() {
-    init();
-  }
+  DbProvider() {}
 
   init() async {
     Directory docsDirectory = await getApplicationDocumentsDirectory();
@@ -35,6 +33,10 @@ class DbProvider {
         );
       },
     );
+  }
+
+  close() async {
+    await db.close();
   }
 
   Future<void> addUser(User user) async {
@@ -63,3 +65,5 @@ class DbProvider {
     return User.fromDB(result[0]);
   }
 }
+
+final dbProvider = DbProvider();

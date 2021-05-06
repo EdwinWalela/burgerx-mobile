@@ -6,7 +6,6 @@ import '../models/User.dart';
 
 class Repository {
   final AuthAPIProvider apiProvider = AuthAPIProvider();
-  final DbProvider dbProvider = DbProvider();
 
   Future<int> registerUser(User user) async {
     final httpCode = await apiProvider.registerUser(user);
@@ -14,6 +13,7 @@ class Repository {
   }
 
   Future<int> authUser(User user) async {
+    await dbProvider.init();
     final response = await apiProvider.authUser(user);
 
     // If 200, extract email & token, store to db (db provider)
@@ -23,16 +23,18 @@ class Repository {
 
       await dbProvider.addUser(user);
     }
-
+    await dbProvider.close();
     return response.statusCode;
   }
 
   Future<User> fetchUser() async {
+    await dbProvider.init();
     final user = await dbProvider.fetchUser();
     if (user != null) {
       print(user);
       return user;
     }
+    await dbProvider.close();
     return null;
   }
 }
