@@ -12,8 +12,7 @@ class DbProvider {
 
   init() async {
     Directory docsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(docsDirectory.path, "burgerx.db");
-
+    final path = join(docsDirectory.path, "burgerx1.db");
     db = await openDatabase(
       path,
       version: 1,
