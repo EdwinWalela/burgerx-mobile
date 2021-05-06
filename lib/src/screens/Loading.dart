@@ -5,9 +5,19 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = GlobalBlocProvider.of(context);
     bloc.fetchUser();
+
     return Scaffold(
-      body: Center(
-        child: Text("Loading..."),
+      body: StreamBuilder(
+        stream: bloc.user,
+        builder: (BuildContext context, AsyncSnapshot snapsot) {
+          if (!snapsot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          // Navigator.of(context).pushNamed('/register');
+          return Container();
+        },
       ),
     );
   }

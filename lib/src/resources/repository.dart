@@ -30,11 +30,6 @@ class Repository {
   Future<User> fetchUser() async {
     await dbProvider.init();
     final user = await dbProvider.fetchUser();
-    if (user != null) {
-      print(user);
-      return user;
-    }
-    await dbProvider.close();
-    return null;
+    return user;
   }
 }
