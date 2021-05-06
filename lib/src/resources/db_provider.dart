@@ -37,7 +37,7 @@ class DbProvider {
     );
   }
 
-  void addUser(User user) async {
+  Future<void> addUser(User user) async {
     final result = await db.query(
       "users",
       columns: ["email"],
