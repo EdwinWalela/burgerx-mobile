@@ -1,4 +1,4 @@
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart';
 import 'dart:convert';
 import '../models/User.dart';
 
@@ -21,7 +21,7 @@ class AuthAPIProvider {
     return response.statusCode;
   }
 
-  Future<int> authUser(User user) async {
+  Future<Response> authUser(User user) async {
     var url = Uri.parse('$_baseURL/login');
 
     final response = await client.post(
@@ -32,7 +32,6 @@ class AuthAPIProvider {
       },
     );
 
-    //@TODO: if 200, store user+token in local db
-    return response.statusCode;
+    return response;
   }
 }

@@ -11,7 +11,10 @@ class Repository {
   }
 
   Future<int> authUser(User user) async {
-    final httpCode = await apiProvider.authUser(user);
-    return httpCode;
+    final response = await apiProvider.authUser(user);
+
+    // If 200, extract email & token, store to db (db provider)
+
+    return response.statusCode;
   }
 }
