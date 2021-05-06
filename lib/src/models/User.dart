@@ -16,6 +16,14 @@ class User {
     password = parsedJson['password'];
   }
 
+  User.fromDB(Map<String, dynamic> parsedJson) {
+    username = parsedJson['name'];
+    email = parsedJson['email'];
+    address = parsedJson['address'];
+    mobile = parsedJson['mobile'];
+    token = parsedJson['token'];
+  }
+
   Map<String, String> toMap() {
     return <String, String>{
       "username": username,

@@ -52,4 +52,14 @@ class DbProvider {
       );
     }
   }
+
+  Future<User> fetchUser() async {
+    final result = await db.query(
+      "users",
+      columns: null,
+      limit: 1,
+    );
+
+    return User.fromDB(result[0]);
+  }
 }
