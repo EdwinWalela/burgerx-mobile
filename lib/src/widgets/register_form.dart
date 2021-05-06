@@ -82,7 +82,7 @@ class RegisterForm extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 10),
             ),
-            buildExistingUser(),
+            buildExistingUser(context),
           ],
         );
       },
@@ -186,10 +186,12 @@ class RegisterForm extends StatelessWidget {
     );
   }
 
-  Widget buildExistingUser() {
+  Widget buildExistingUser(BuildContext context) {
     return InkWell(
       child: Text("Already have an account? Sign in"),
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, '/login');
+      },
     );
   }
 

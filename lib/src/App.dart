@@ -5,39 +5,15 @@ import './screens/MenuTab.dart';
 import './screens/Login.dart';
 import './screens/Register.dart';
 import './blocs/global_bloc_provider.dart';
+import './screens/Decision.dart';
 
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
-    final bloc = GlobalBlocProvider.of(context);
-    bloc.fetchUser();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: RegisterScreen(),
-      // home: LoginScreen(),
-      builder: (BuildContext context, Widget child) {
-        return StreamBuilder(
-          stream: bloc.user,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (!snapshot.hasData) {
-              return RegisterScreen();
-            }
-
-            return Navigator(
-              onGenerateRoute: (RouteSettings settings) {
-                return new MaterialPageRoute(
-                  builder: (context) => MenuTab(),
-                );
-              },
-            );
-          },
-        );
-      },
-
-      routes: <String, WidgetBuilder>{
-        '/register': (BuildContext context) => RegisterScreen(),
-        '/login': (BuildContext context) => LoginScreen(),
-        '/menu': (BuildContext context) => MenuTab(),
-      },
+      home: GlobalBlocProvider(
+        child: DecisionScreen(),
+      ),
     );
   }
 }
