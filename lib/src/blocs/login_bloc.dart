@@ -2,7 +2,6 @@ import '../models/User.dart';
 import 'package:rxdart/rxdart.dart';
 import '../mixins/validators.dart';
 import '../resources/repository.dart';
-import '../resources/auth_api_provider.dart';
 
 class LoginBloc extends Validators {
   final _repository = Repository();

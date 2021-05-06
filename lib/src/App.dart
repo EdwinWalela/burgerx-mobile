@@ -8,9 +8,10 @@ import './screens/Loading.dart';
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        // home: RegisterScreen(),
-        // home: LoginScreen(),
-        home: Loading());
+      debugShowCheckedModeBanner: false,
+      // home: RegisterScreen(),
+      // home: LoginScreen(),
+      home: Loading(),
+    );
   }
 }
