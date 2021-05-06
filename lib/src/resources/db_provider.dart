@@ -8,6 +8,10 @@ import '../models/User.dart';
 class DbProvider {
   Database db;
 
+  DbProvider() {
+    init();
+  }
+
   init() async {
     Directory docsDirectory = await getApplicationDocumentsDirectory();
     final path = join(docsDirectory.path, "burgerx.db");
@@ -31,5 +35,9 @@ class DbProvider {
         );
       },
     );
+  }
+
+  addUser(User user, String token) async {
+    // return db.insert(table, values)
   }
 }
