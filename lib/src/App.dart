@@ -11,6 +11,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      routes: <String, WidgetBuilder>{
+        '/decision': (BuildContext context) => DecisionScreen(),
+        '/login': (BuildContext context) => LoginScreen(),
+        '/register': (BuildContext context) => RegisterScreen(),
+        '/menu': (BuildContext context) => MenuTab()
+      },
       home: GlobalBlocProvider(
         child: DecisionScreen(),
       ),

@@ -69,7 +69,7 @@ class LoginForm extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 30),
             ),
-            buildNewUser()
+            buildNewUser(context)
           ],
         );
       },
@@ -134,10 +134,12 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  Widget buildNewUser() {
+  Widget buildNewUser(BuildContext context) {
     return InkWell(
       child: Text("Don't have an account? Sign up"),
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, '/register');
+      },
     );
   }
 }
