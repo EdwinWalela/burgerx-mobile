@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 // import './screens/Login.dart';
 // import './screens/Register.dart';
 import './screens/Loading.dart';
+import './blocs/global_bloc_provider.dart';
 
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // home: RegisterScreen(),
-      // home: LoginScreen(),
-      home: Loading(),
+    return GlobalBlocProvider(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        // home: RegisterScreen(),
+        // home: LoginScreen(),
+        home: Loading(),
+      ),
     );
   }
 }
