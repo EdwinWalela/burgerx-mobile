@@ -4,6 +4,7 @@ class User {
   String address;
   String mobile;
   String password;
+  String token;
 
   User({this.username, this.email, this.address, this.mobile, this.password});
 
@@ -13,5 +14,14 @@ class User {
     address = parsedJson['address'];
     mobile = parsedJson['mobile'];
     password = parsedJson['password'];
+  }
+
+  Map<String, String> toMap() {
+    return <String, String>{
+      "username": username,
+      "email": email,
+      "address": address,
+      "mobile": mobile,
+    };
   }
 }
