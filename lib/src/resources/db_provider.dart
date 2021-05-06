@@ -37,7 +37,19 @@ class DbProvider {
     );
   }
 
-  addUser(User user, String token) async {
-    // return db.insert(table, values)
+  void addUser(User user) async {
+    final result = await db.query(
+      "users",
+      columns: ["email"],
+      where: "email = ?",
+      whereArgs: [user.email],
+    );
+
+    if (result.length == 0) {
+      await db.insert(
+        "users",
+        user.toMap(),
+      );
+    }
   }
 }

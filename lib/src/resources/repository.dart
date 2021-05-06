@@ -14,7 +14,7 @@ class Repository {
     final response = await apiProvider.authUser(user);
 
     // If 200, extract email & token, store to db (db provider)
-
+    // user.token = response.body;
     return response.statusCode;
   }
 }
