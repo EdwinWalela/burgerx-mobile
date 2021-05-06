@@ -1,5 +1,6 @@
 import './menu_api_provider.dart';
 import './auth_api_provider.dart';
+import './db_provider.dart';
 import '../models/User.dart';
 
 class Repository {
@@ -14,7 +15,6 @@ class Repository {
     final response = await apiProvider.authUser(user);
 
     // If 200, extract email & token, store to db (db provider)
-    // user.token = response.body;
     return response.statusCode;
   }
 }

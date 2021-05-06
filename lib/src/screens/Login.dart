@@ -6,11 +6,11 @@ import '../blocs/login_bloc_provider.dart';
 class LoginScreen extends StatelessWidget {
   String getGreeting(int hr) {
     if (hr < 12) {
-      return "Good Morning,";
+      return "Good Morning.";
     } else if (hr < 16) {
-      return "Good Afternoon,";
+      return "Good Afternoon.";
     } else {
-      return "Good Evening,";
+      return "Good Evening.";
     }
   }
 

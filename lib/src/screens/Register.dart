@@ -16,7 +16,7 @@ class RegisterScreen extends StatelessWidget {
               margin: EdgeInsets.only(top: 60),
             ),
             PageHeader(
-              title: "Create Account,",
+              title: "Create Account.",
               subtitle: "Sign up to get started",
             ),
             Container(
