@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'Burgers.dart';
-import 'Drinks.dart';
-import 'Meals.dart';
+import 'MenuTab/Burgers.dart';
+import 'MenuTab/Drinks.dart';
+import 'MenuTab/Meals.dart';
 
 class MenuTab extends StatelessWidget {
   Widget build(BuildContext context) {

@@ -1,10 +1,9 @@
 import 'package:burgers/src/screens/Login.dart';
 import 'package:burgers/src/screens/Register.dart';
 import 'package:flutter/material.dart';
-// import './screens/MenuTab/MenuTab.dart';
-// import './screens/Login.dart';
-// import './screens/Register.dart';
-import './screens/Loading.dart';
+import './screens/MenuTab.dart';
+import './screens/Login.dart';
+import './screens/Register.dart';
 import './blocs/global_bloc_provider.dart';
 
 class App extends StatelessWidget {
@@ -26,7 +25,7 @@ class App extends StatelessWidget {
             return Navigator(
               onGenerateRoute: (RouteSettings settings) {
                 return new MaterialPageRoute(
-                  builder: (context) => LoginScreen(),
+                  builder: (context) => MenuTab(),
                 );
               },
             );
@@ -36,7 +35,8 @@ class App extends StatelessWidget {
 
       routes: <String, WidgetBuilder>{
         '/register': (BuildContext context) => RegisterScreen(),
-        '/login': (BuildContext context) => LoginScreen()
+        '/login': (BuildContext context) => LoginScreen(),
+        '/menu': (BuildContext context) => MenuTab(),
       },
     );
   }
