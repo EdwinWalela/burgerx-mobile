@@ -20,7 +20,7 @@ class Item extends StatelessWidget {
           )
         ],
       ),
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(5.0),
       margin: EdgeInsets.all(10.0),
       child: Row(
         children: [
@@ -47,7 +47,7 @@ class Item extends StatelessWidget {
 
   Widget detailsColumn(FoodItem item) {
     return Expanded(
-      flex: 1,
+      flex: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -56,9 +56,7 @@ class Item extends StatelessWidget {
           Container(margin: EdgeInsets.only(bottom: 5.0)),
           description(item.ingredients),
           Container(margin: EdgeInsets.only(bottom: 5.0)),
-          stars(item.stars),
-          Container(margin: EdgeInsets.only(bottom: 5.0)),
-          price(item.price),
+          priceStarsRow(item.stars, item.price),
           Container(margin: EdgeInsets.only(bottom: 5.0)),
           addToCartBtn(),
         ],
@@ -70,7 +68,8 @@ class Item extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        fontSize: 20.0,
+        fontSize: 15.0,
+        fontWeight: FontWeight.w600,
       ),
     );
   }
@@ -85,21 +84,29 @@ class Item extends StatelessWidget {
   }
 
   Widget stars(double value) {
-    List<Icon> stars = [];
-
-    for (var i = 0; i < value; i++) {
-      stars.add(Icon(Icons.star_rate_outlined));
-    }
-    return Row(children: stars);
+    return Icon(
+      Icons.star,
+      size: 20.0,
+    );
   }
 
   Widget price(int value) {
     return Text(
       'KSH.$value',
       style: TextStyle(
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
+        fontSize: 15.0,
+        fontWeight: FontWeight.w600,
       ),
+    );
+  }
+
+  Widget priceStarsRow(double starsValue, int priceValue) {
+    return Row(
+      children: [
+        stars(starsValue),
+        Container(margin: EdgeInsets.only(right: 10)),
+        price(priceValue),
+      ],
     );
   }
 
