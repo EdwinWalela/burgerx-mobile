@@ -8,11 +8,9 @@ import '../models/User.dart';
 class DbProvider {
   Database db;
 
-  DbProvider() {}
-
   init() async {
     Directory docsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(docsDirectory.path, "burger4.db");
+    final path = join(docsDirectory.path, "burgerx.db");
     db = await openDatabase(
       path,
       version: 1,
