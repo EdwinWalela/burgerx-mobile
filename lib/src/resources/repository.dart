@@ -1,11 +1,14 @@
 import 'dart:convert';
-// import './menu_api_provider.dart';
+import './menu_api_provider.dart';
+
 import './auth_api_provider.dart';
 import './db_provider.dart';
 import '../models/User.dart';
+import '../models/Food_Item.dart';
 
 class Repository {
   final AuthAPIProvider apiProvider = AuthAPIProvider();
+  final MenuAPIProvider menuProvider = MenuAPIProvider();
 
   Future<int> registerUser(User user) async {
     final httpCode = await apiProvider.registerUser(user);
@@ -31,5 +34,9 @@ class Repository {
     await dbProvider.init();
     final user = await dbProvider.fetchUser();
     return user;
+  }
+
+  Future<List<FoodItem>> fetchMenu() async {
+    return menuProvider.fetchMenu();
   }
 }

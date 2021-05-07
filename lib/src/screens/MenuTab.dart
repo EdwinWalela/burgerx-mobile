@@ -4,7 +4,9 @@ import 'MenuTab/Drinks.dart';
 import 'MenuTab/Meals.dart';
 
 class MenuTab extends StatelessWidget {
+  // bloc.fetch menu
   Widget build(BuildContext context) {
+    // Listen to menu stream
     return DefaultTabController(
       length: 3,
       child: Scaffold(

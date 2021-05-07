@@ -7,7 +7,7 @@ class DecisionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = GlobalBlocProvider.of(context);
     bloc.fetchUser();
-
+    // Fetch Menu
     return StreamBuilder(
       stream: bloc.user,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
