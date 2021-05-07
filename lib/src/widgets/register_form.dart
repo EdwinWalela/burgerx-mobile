@@ -37,6 +37,12 @@ class RegisterForm extends StatelessWidget {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 duration: Duration(seconds: 8),
+                action: SnackBarAction(
+                  label: "Sign in",
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login');
+                  },
+                ),
                 content: Text(
                   'Registration Successful',
                 ),

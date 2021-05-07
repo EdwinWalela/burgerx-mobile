@@ -33,12 +33,12 @@ class LoginForm extends StatelessWidget {
         if (snapshot.hasData) {
           // @TODO: redirect to menu page
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            Navigator.pushNamed(context, '/menu');
+            Navigator.pushReplacementNamed(context, '/menu');
           });
         }
+        final bool data = snapshot.data ?? false;
 
-        if (snapshot.hasError && !snapshot.data ?? false) {
-          //
+        if (snapshot.hasError) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
