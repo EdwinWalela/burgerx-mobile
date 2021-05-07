@@ -37,7 +37,7 @@ class Item extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(5.0),
         child: Image.network(
           thumb,
         ),
@@ -47,7 +47,7 @@ class Item extends StatelessWidget {
 
   Widget detailsColumn(FoodItem item) {
     return Expanded(
-      flex: 2,
+      flex: 3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -58,7 +58,7 @@ class Item extends StatelessWidget {
           Container(margin: EdgeInsets.only(bottom: 5.0)),
           priceStarsRow(item.stars, item.price),
           Container(margin: EdgeInsets.only(bottom: 5.0)),
-          addToCartBtn(),
+          // addToCartBtn(),
         ],
       ),
     );
@@ -117,15 +117,19 @@ class Item extends StatelessWidget {
         stars(starsValue),
         Container(margin: EdgeInsets.only(right: 10)),
         price(priceValue),
+        Container(margin: EdgeInsets.only(right: 40)),
+        addToCartBtn(),
       ],
     );
   }
 
   Widget addToCartBtn() {
-    return ElevatedButton.icon(
+    return TextButton(
       onPressed: () {},
-      icon: Icon(Icons.shopping_bag_outlined),
-      label: Text('Add to Cart'),
+      child: Icon(
+        Icons.shopping_bag_outlined,
+        color: Colors.black,
+      ),
     );
   }
 }
