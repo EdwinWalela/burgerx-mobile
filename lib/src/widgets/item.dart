@@ -15,8 +15,8 @@ class Item extends StatelessWidget {
           BoxShadow(
             spreadRadius: 2,
             blurRadius: 3,
-            color: Colors.grey.withOpacity(0.3),
-            offset: Offset(3, 5),
+            color: Colors.grey.withOpacity(0.1),
+            offset: Offset(0, 3),
           )
         ],
       ),
@@ -95,6 +95,7 @@ class Item extends StatelessWidget {
           '$value',
           style: TextStyle(
             color: Colors.grey[600],
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],
