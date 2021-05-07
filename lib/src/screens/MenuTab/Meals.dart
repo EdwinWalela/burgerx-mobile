@@ -12,6 +12,12 @@ class Meals extends StatelessWidget {
           'Family fries, beef burger, soda'),
       FoodItem('https://bit.ly/3fMOerp', 'Family Meal', 850, 4,
           'Family fries, beef burger, soda'),
+      FoodItem('https://bit.ly/3fMOerp', 'Family Meal', 850, 4,
+          'Family fries, beef burger, soda'),
+      FoodItem('https://bit.ly/3fMOerp', 'Family Meal', 850, 4,
+          'Family fries, beef burger, soda'),
+      FoodItem('https://bit.ly/3fMOerp', 'Family Meal', 850, 4,
+          'Family fries, beef burger, soda'),
     ];
     return Scaffold(
       body: ItemList(_items),

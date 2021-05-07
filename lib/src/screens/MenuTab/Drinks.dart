@@ -10,6 +10,10 @@ class Drinks extends StatelessWidget {
       FoodItem('https://bit.ly/3wBNaN5', 'Coke', 100, 0, '500ml'),
       FoodItem('https://bit.ly/3wBNaN5', 'Coke', 100, 0, '1 Liter'),
       FoodItem('https://bit.ly/3wBNaN5', 'Coke', 100, 0, '250ml'),
+      FoodItem('https://bit.ly/3wBNaN5', 'Coke', 100, 0, '300ml'),
+      FoodItem('https://bit.ly/3wBNaN5', 'Coke', 100, 0, '500ml'),
+      FoodItem('https://bit.ly/3wBNaN5', 'Coke', 100, 0, '1 Liter'),
+      FoodItem('https://bit.ly/3wBNaN5', 'Coke', 100, 0, '250ml'),
     ];
     return Scaffold(
       body: ItemList(_items),
