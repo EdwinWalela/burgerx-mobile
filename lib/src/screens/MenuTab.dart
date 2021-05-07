@@ -9,7 +9,10 @@ class MenuTab extends StatelessWidget {
       length: 3,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.shopping_bag_outlined),
+          backgroundColor: Colors.orange[600],
+          child: Icon(
+            Icons.shopping_bag,
+          ),
           onPressed: () {},
         ),
         appBar: AppBar(
