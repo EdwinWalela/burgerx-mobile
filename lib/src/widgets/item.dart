@@ -84,9 +84,20 @@ class Item extends StatelessWidget {
   }
 
   Widget stars(double value) {
-    return Icon(
-      Icons.star,
-      size: 20.0,
+    return Row(
+      children: [
+        Icon(
+          Icons.star,
+          size: 20.0,
+          color: Colors.yellow,
+        ),
+        Text(
+          '$value',
+          style: TextStyle(
+            color: Colors.grey[600],
+          ),
+        ),
+      ],
     );
   }
 
