@@ -52,7 +52,14 @@ class MenuTab extends StatelessWidget {
         if (!snapshot.hasData) {
           return Scaffold(
             body: Center(
-              child: ItemHolder(),
+              child: Column(
+                children: [
+                  ItemHolder(),
+                  ItemHolder(),
+                  ItemHolder(),
+                  ItemHolder(),
+                ],
+              ),
             ),
           );
         }

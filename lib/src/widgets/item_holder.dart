@@ -35,6 +35,7 @@ class ItemHolder extends StatelessWidget {
         borderRadius: BorderRadius.circular(5.0),
         child: Container(
           color: Colors.grey[300],
+          height: 80,
         ),
       ),
     );
