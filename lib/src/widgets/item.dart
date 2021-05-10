@@ -7,6 +7,7 @@ class Item extends StatelessWidget {
   Item(FoodItem item) {
     _item = item;
   }
+
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(

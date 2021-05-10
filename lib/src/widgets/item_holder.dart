@@ -1,4 +1,3 @@
-import 'package:burgers/src/models/Food_Item.dart';
 import 'package:flutter/material.dart';
 
 class ItemHolder extends StatelessWidget {
