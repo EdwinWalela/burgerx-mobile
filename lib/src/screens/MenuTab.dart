@@ -26,6 +26,7 @@ class MenuTab extends StatelessWidget {
           },
         ),
         appBar: AppBar(
+          backgroundColor: Colors.orange[600],
           title: Text('Fast Food'),
           centerTitle: true,
           bottom: TabBar(

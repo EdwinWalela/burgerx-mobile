@@ -22,10 +22,9 @@ class App extends StatelessWidget {
             ),
         '/cart': (BuildContext context) => CartScreen(),
       },
-      home:CartScreen()
-      // home: GlobalBlocProvider(
-      //   child: DecisionScreen(),
-      // ),
+      home: GlobalBlocProvider(
+        child: DecisionScreen(),
+      ),
     );
   }
 }
