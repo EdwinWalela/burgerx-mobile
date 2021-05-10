@@ -12,6 +12,7 @@ import './screens/Decision.dart';
 class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "BurgerX",
       debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder>{
         '/decision': (BuildContext context) => DecisionScreen(),
