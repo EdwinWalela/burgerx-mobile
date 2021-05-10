@@ -3,17 +3,15 @@ import 'package:burgers/src/widgets/item.dart';
 import 'package:flutter/material.dart';
 
 class ItemList extends StatelessWidget {
-  List<FoodItem> _items;
+  final List items;
 
-  ItemList(List<FoodItem> items) {
-    _items = items;
-  }
+  ItemList({this.items});
 
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: _items.length,
+      itemCount: items.length,
       itemBuilder: (context, index) {
-        return Item(_items[index]);
+        return Item(FoodItem.fromJson(items[index]));
       },
     );
   }

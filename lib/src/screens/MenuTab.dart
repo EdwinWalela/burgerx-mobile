@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'MenuTab/Burgers.dart';
 import 'MenuTab/Drinks.dart';
 import 'MenuTab/Meals.dart';
+import '../blocs/menu_bloc_provider.dart';
 
 class MenuTab extends StatelessWidget {
   // bloc.fetch menu
+
   Widget build(BuildContext context) {
     // Listen to menu stream
+    final bloc = MenuBlocProvider.of(context);
+    bloc.fetchMenu();
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -30,12 +35,65 @@ class MenuTab extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Burgers(),
-            Drinks(),
-            Meals(),
+            buildBurgerTab(bloc),
+            buildDrinksrTab(bloc),
+            buildMealsTab(bloc),
           ],
         ),
       ),
+    );
+  }
+
+  Widget buildBurgerTab(MenuBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.items,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (!snapshot.hasData) {
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        final items =
+            snapshot.data.where((i) => i['category'] == 'burger').toList();
+
+        return Burgers(items: items);
+      },
+    );
+  }
+
+  Widget buildDrinksrTab(MenuBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.items,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (!snapshot.hasData) {
+          return Scaffold(
+            body: Text('Loading...'),
+          );
+        }
+        final items =
+            snapshot.data.where((i) => i['category'] == 'drinks').toList();
+
+        return Drinks(items: items);
+      },
+    );
+  }
+
+  Widget buildMealsTab(MenuBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.items,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (!snapshot.hasData) {
+          return Scaffold(
+            body: Text('Loading...'),
+          );
+        }
+        final items =
+            snapshot.data.where((i) => i['category'] == 'meals').toList();
+
+        return Meals(items: items);
+      },
     );
   }
 }

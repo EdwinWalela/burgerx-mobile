@@ -8,14 +8,14 @@ class MenuBloc extends Validators {
   final _repository = Repository();
 
   // StreamControllers
-  final _menu = BehaviorSubject<Future<List<FoodItem>>>();
+  final _menu = BehaviorSubject<List>();
 
   // Getters
-  Function(Future<List<FoodItem>>) get addItems => _menu.sink.add;
-  Stream<Future<List<FoodItem>>> get items => _menu.stream;
+  Function(List) get addItems => _menu.sink.add;
+  Stream<List> get items => _menu.stream;
 
-  void fetchMenu() {
-    final menu = _repository.fetchMenu();
+  void fetchMenu() async {
+    final menu = await _repository.fetchMenu();
     addItems(menu);
   }
 

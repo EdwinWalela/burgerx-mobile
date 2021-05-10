@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './MenuTab.dart';
 import './Login.dart';
 import '../blocs/global_bloc_provider.dart';
+import '../blocs/menu_bloc_provider.dart';
 
 class DecisionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -13,7 +14,12 @@ class DecisionScreen extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data != null) {
-            _redirect(context, MenuTab());
+            _redirect(
+              context,
+              MenuBlocProvider(
+                child: MenuTab(),
+              ),
+            );
           } else {
             _redirect(context, LoginScreen());
           }

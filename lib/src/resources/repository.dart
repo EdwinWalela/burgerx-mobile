@@ -36,7 +36,7 @@ class Repository {
     return user;
   }
 
-  Future<List<FoodItem>> fetchMenu() async {
+  Future<List> fetchMenu() async {
     return menuProvider.fetchMenu();
   }
 }
