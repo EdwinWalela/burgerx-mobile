@@ -7,7 +7,8 @@ class FoodItem {
   double stars;
   String ingredients;
 
-  FoodItem(this.thumb, this.name, this.price, this.stars, this.ingredients);
+  FoodItem(this._id, this.__v, this.thumb, this.name, this.price, this.stars,
+      this.ingredients);
 
   FoodItem.fromJson(parsedJson) {
     __v = parsedJson['__v'];
