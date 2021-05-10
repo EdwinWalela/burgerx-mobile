@@ -3,6 +3,7 @@ import 'MenuTab/Burgers.dart';
 import 'MenuTab/Drinks.dart';
 import 'MenuTab/Meals.dart';
 import '../blocs/menu_bloc_provider.dart';
+import '../widgets/item_holder.dart';
 
 class MenuTab extends StatelessWidget {
   // bloc.fetch menu
@@ -51,7 +52,7 @@ class MenuTab extends StatelessWidget {
         if (!snapshot.hasData) {
           return Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: ItemHolder(),
             ),
           );
         }
