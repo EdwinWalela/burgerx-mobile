@@ -21,7 +21,9 @@ class MenuTab extends StatelessWidget {
           child: Icon(
             Icons.shopping_bag,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/cart');
+          },
         ),
         appBar: AppBar(
           title: Text('Fast Food'),
