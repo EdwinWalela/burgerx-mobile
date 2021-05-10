@@ -5,6 +5,7 @@ import './screens/MenuTab.dart';
 import './screens/Login.dart';
 import './screens/Register.dart';
 import './blocs/global_bloc_provider.dart';
+import './blocs/menu_bloc_provider.dart';
 import './screens/Decision.dart';
 
 class App extends StatelessWidget {
@@ -15,7 +16,9 @@ class App extends StatelessWidget {
         '/decision': (BuildContext context) => DecisionScreen(),
         '/login': (BuildContext context) => LoginScreen(),
         '/register': (BuildContext context) => RegisterScreen(),
-        '/menu': (BuildContext context) => MenuTab()
+        '/menu': (BuildContext context) => MenuBlocProvider(
+              child: MenuTab(),
+            )
       },
       home: GlobalBlocProvider(
         child: DecisionScreen(),
