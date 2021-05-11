@@ -13,16 +13,6 @@ class CartScreen extends StatelessWidget {
         "ingredients"),
     FoodItem("_id", 0, "https://bit.ly/3d4kqEO", "Beef BBQ Burger", 650, 4,
         "ingredients"),
-    FoodItem("_id", 0, "https://bit.ly/3d4kqEO", "Beef BBQ Burger", 650, 4,
-        "ingredients"),
-    FoodItem("_id", 0, "https://bit.ly/3d4kqEO", "Beef BBQ Burger", 650, 4,
-        "ingredients"),
-    FoodItem("_id", 0, "https://bit.ly/3d4kqEO", "Beef BBQ Burger", 650, 4,
-        "ingredients"),
-    FoodItem("_id", 0, "https://bit.ly/3d4kqEO", "Beef BBQ Burger", 650, 4,
-        "ingredients"),
-    FoodItem("_id", 0, "https://bit.ly/3d4kqEO", "Beef BBQ Burger", 650, 4,
-        "ingredients"),
   ];
 
   Widget build(BuildContext context) {
