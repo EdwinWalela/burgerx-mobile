@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/order_summary.dart';
+import '../widgets/payment_options.dart';
 
 class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -13,8 +14,10 @@ class CheckoutScreen extends StatelessWidget {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           OrderSummary(isCheckout: true),
+          PaymentOptions(),
         ],
       ),
     );
