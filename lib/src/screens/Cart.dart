@@ -30,7 +30,7 @@ class CartScreen extends StatelessWidget {
           children: [
             CartList(items: items),
             Divider(thickness: 2),
-            OrderSummary(),
+            OrderSummary(isCheckout: false),
           ],
         ),
       ),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class OrderSummary extends StatelessWidget {
+  final bool isCheckout;
+
+  OrderSummary({this.isCheckout});
+
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 25),
@@ -12,7 +16,7 @@ class OrderSummary extends StatelessWidget {
           Container(margin: EdgeInsets.only(top: 15)),
           buildSumTotal(1650),
           Container(margin: EdgeInsets.only(top: 20)),
-          buildCheckoutButton(),
+          !isCheckout ? buildCheckoutButton(context) : Container(),
         ],
       ),
     );
@@ -108,14 +112,16 @@ class OrderSummary extends StatelessWidget {
     );
   }
 
-  Widget buildCheckoutButton() {
+  Widget buildCheckoutButton(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.orange[600],
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/checkout');
+        },
         child: Padding(
           padding: EdgeInsets.all(10),
           child: Text(

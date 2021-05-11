@@ -7,6 +7,7 @@ import './screens/Register.dart';
 import './screens/Cart.dart';
 import './blocs/global_bloc_provider.dart';
 import './blocs/menu_bloc_provider.dart';
+import './screens/Checkout.dart';
 import './screens/Decision.dart';
 
 class App extends StatelessWidget {
@@ -22,6 +23,7 @@ class App extends StatelessWidget {
               child: MenuTab(),
             ),
         '/cart': (BuildContext context) => CartScreen(),
+        '/checkout': (BuildContext context) => CheckoutScreen(),
       },
       home: CartScreen(),
       // home: GlobalBlocProvider(
