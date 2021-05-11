@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/cart_list.dart';
+import '../widgets/order_summary.dart';
 import '../models/Food_Item.dart';
 
 class CartScreen extends StatelessWidget {
@@ -26,6 +27,8 @@ class CartScreen extends StatelessWidget {
         child: Column(
           children: [
             CartList(items: items),
+            Divider(thickness: 2),
+            OrderSummary(),
           ],
         ),
       ),
