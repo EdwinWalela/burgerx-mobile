@@ -9,6 +9,7 @@ class CartList extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: items.length,
       itemBuilder: (context, index) {
         return Column(

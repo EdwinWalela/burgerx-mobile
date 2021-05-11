@@ -22,7 +22,13 @@ class CartScreen extends StatelessWidget {
           "My Order",
         ),
       ),
-      body: CartList(items: items),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CartList(items: items),
+          ],
+        ),
+      ),
     );
   }
 }

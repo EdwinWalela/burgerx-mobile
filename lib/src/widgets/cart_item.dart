@@ -2,7 +2,7 @@ import 'package:burgers/src/models/Food_Item.dart';
 import 'package:flutter/material.dart';
 
 class CartItem extends StatelessWidget {
-  FoodItem item;
+  final FoodItem item;
 
   CartItem({this.item});
 
@@ -59,16 +59,35 @@ class CartItem extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(top: 10),
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                margin: EdgeInsets.only(left: 50),
+              ),
               InkWell(
-                child: Icon(Icons.add),
+                child: Icon(
+                  Icons.add_circle,
+                ),
                 onTap: () {},
               ),
-              Text('3'),
+              Container(margin: EdgeInsets.only(right: 10)),
+              Text(
+                '3',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[600],
+                ),
+              ),
+              Container(margin: EdgeInsets.only(right: 10)),
               InkWell(
-                child: Icon(Icons.remove),
+                child: Icon(
+                  Icons.remove_circle,
+                ),
                 onTap: () {},
               ),
             ],
