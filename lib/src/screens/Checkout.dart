@@ -16,7 +16,9 @@ class CheckoutScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(margin: EdgeInsets.only(top: 20)),
           OrderSummary(isCheckout: true),
+          Divider(),
           PaymentOptions(),
         ],
       ),
