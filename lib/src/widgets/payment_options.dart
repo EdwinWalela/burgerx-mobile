@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class PaymentOptions extends StatelessWidget {
   final List<String> options = ["cash", "mpesa", "card"];
+  final String activePaymentMode = "cash";
 
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +20,7 @@ class PaymentOptions extends StatelessWidget {
           ),
           Container(margin: EdgeInsets.only(bottom: 20)),
           Wrap(
-            spacing: 40,
+            spacing: 10,
             runSpacing: 30,
             children: buildOptionCards(),
           ),
@@ -35,37 +36,43 @@ class PaymentOptions extends StatelessWidget {
       switch (option) {
         case "cash":
           {
-            options.add(buildCard("Cash on Delivery", ""));
+            options.add(
+                buildCard("Cash on Delivery", "", activePaymentMode == "cash"));
           }
           break;
         case "card":
           {
-            options.add(buildCard("Credit/Debit Card", "44************82"));
+            options.add(buildCard("Credit/Debit Card", "44************82",
+                activePaymentMode == "card"));
           }
           break;
         case "mpesa":
           {
-            options.add(buildCard("M-Pesa", "0706****85"));
+            options.add(buildCard(
+                "M-Pesa", "0706****85", activePaymentMode == "mpesa"));
           }
       }
     }
     return options;
   }
 
-  Widget buildCard(String title, String subtitle) {
+  Widget buildCard(String title, String subtitle, bool active) {
     return ConstrainedBox(
       constraints: BoxConstraints(
         minWidth: 110,
         minHeight: 80,
-        maxWidth: 160,
+        maxWidth: 150,
       ),
       child: Container(
         padding: EdgeInsets.all(17),
         decoration: BoxDecoration(
+          border: active
+              ? Border.all(color: Colors.purple.withOpacity(0.6), width: 3)
+              : null,
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.orange[600].withOpacity(0.1),
+              color: Colors.orange[600].withOpacity(!active ? 0.1 : 0),
               spreadRadius: 2,
               blurRadius: 2,
               offset: Offset(0, 3),
@@ -78,7 +85,7 @@ class PaymentOptions extends StatelessWidget {
               Text(
                 "$title",
                 style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: Colors.grey[700]),
               ),

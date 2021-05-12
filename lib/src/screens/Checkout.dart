@@ -19,10 +19,15 @@ class CheckoutScreen extends StatelessWidget {
           children: [
             Container(margin: EdgeInsets.only(top: 20)),
             OrderSummary(isCheckout: true),
-            Divider(),
+            Divider(
+              color: Colors.orange[500].withOpacity(0.2),
+              thickness: 5,
+            ),
+            Container(margin: EdgeInsets.only(top: 10)),
             PaymentOptions(),
-            Container(margin: EdgeInsets.only(top: 60)),
+            Container(margin: EdgeInsets.only(top: 10)),
             buildCompleteOrderButton(),
+            Container(margin: EdgeInsets.only(top: 20)),
           ],
         ),
       ),
