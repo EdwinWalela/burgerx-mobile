@@ -1,10 +1,11 @@
 import 'dart:convert';
-import './menu_api_provider.dart';
 
+import './menu_api_provider.dart';
 import './auth_api_provider.dart';
 import './db_provider.dart';
 import '../models/User.dart';
 import '../models/Food_Item.dart';
+import '../models/Cart_Item.dart';
 
 class Repository {
   final AuthAPIProvider apiProvider = AuthAPIProvider();
@@ -38,5 +39,15 @@ class Repository {
 
   Future<List> fetchMenu() async {
     return menuProvider.fetchMenu();
+  }
+
+  Future<void> fetchCart() async {
+    await dbProvider.init();
+    await dbProvider.fetchCart();
+  }
+
+  Future<void> addToCart(CartItem item) async {
+    await dbProvider.init();
+    await dbProvider.addCartItem(item);
   }
 }

@@ -79,6 +79,15 @@ class DbProvider {
     }
   }
 
+  fetchCart() async {
+    final result = await db.query(
+      "cart",
+      columns: null,
+    );
+
+    print(result);
+  }
+
   Future<User> fetchUser() async {
     final result = await db.query(
       "users",
