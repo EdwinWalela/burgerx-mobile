@@ -1,5 +1,5 @@
 class FoodItem {
-  String _id;
+  String id;
   int __v;
   String thumb;
   String name;
@@ -7,12 +7,12 @@ class FoodItem {
   double stars;
   String ingredients;
 
-  FoodItem(this._id, this.__v, this.thumb, this.name, this.price, this.stars,
+  FoodItem(this.id, this.__v, this.thumb, this.name, this.price, this.stars,
       this.ingredients);
 
   FoodItem.fromJson(parsedJson) {
     __v = parsedJson['__v'];
-    _id = parsedJson['_id'];
+    id = parsedJson['_id'];
     thumb = parsedJson['thumb'];
     name = parsedJson['name'];
     price = parsedJson['price'];

@@ -1,3 +1,5 @@
+import 'package:burgers/src/blocs/cart_bloc_provider.dart';
+import 'package:burgers/src/models/Cart_Item.dart';
 import 'package:burgers/src/models/Food_Item.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,8 @@ class Item extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
+    final bloc = CartBlocProvider.of(context);
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -28,7 +32,7 @@ class Item extends StatelessWidget {
           Container(margin: EdgeInsets.only(right: 10.0)),
           thumbnail(_item.thumb),
           Container(margin: EdgeInsets.only(right: 20.0)),
-          detailsColumn(_item),
+          detailsColumn(_item, bloc),
         ],
       ),
     );
@@ -46,7 +50,7 @@ class Item extends StatelessWidget {
     );
   }
 
-  Widget detailsColumn(FoodItem item) {
+  Widget detailsColumn(FoodItem item, CartBloc bloc) {
     return Expanded(
       flex: 3,
       child: Column(
@@ -57,7 +61,7 @@ class Item extends StatelessWidget {
           Container(margin: EdgeInsets.only(bottom: 5.0)),
           description(item.ingredients),
           Container(margin: EdgeInsets.only(bottom: 5.0)),
-          priceStarsRow(item.stars, item.price),
+          priceStarsRow(item.stars, item.price, bloc),
           Container(margin: EdgeInsets.only(bottom: 5.0)),
           // addToCartBtn(),
         ],
@@ -113,21 +117,31 @@ class Item extends StatelessWidget {
     );
   }
 
-  Widget priceStarsRow(double starsValue, int priceValue) {
+  Widget priceStarsRow(double starsValue, int priceValue, CartBloc bloc) {
     return Row(
       children: [
         stars(starsValue),
         Container(margin: EdgeInsets.only(right: 10)),
         price(priceValue),
         Container(margin: EdgeInsets.only(right: 40)),
-        addToCartBtn(),
+        addToCartBtn(bloc),
       ],
     );
   }
 
-  Widget addToCartBtn() {
+  Widget addToCartBtn(CartBloc bloc) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        bloc.addItem(
+          CartItem(
+              id: this._item.id,
+              name: this._item.name,
+              price: this._item.price,
+              quantity: 0,
+              thumb: this._item.thumb),
+        );
+        bloc.addToCart();
+      },
       child: Icon(
         Icons.shopping_bag_outlined,
         color: Colors.black,

@@ -1,3 +1,4 @@
+import 'package:burgers/src/blocs/cart_bloc_provider.dart';
 import 'package:burgers/src/models/Food_Item.dart';
 import 'package:burgers/src/widgets/item.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,9 @@ class ItemList extends StatelessWidget {
     return ListView.builder(
       itemCount: items.length,
       itemBuilder: (context, index) {
-        return Item(FoodItem.fromJson(items[index]));
+        return CartBlocProvider(
+          child: Item(FoodItem.fromJson(items[index])),
+        );
       },
     );
   }

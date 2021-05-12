@@ -7,20 +7,20 @@ class CartItem {
   CartItem({this.id, this.name, this.price, this.quantity, this.thumb});
 
   CartItem.fromDB(Map<String, dynamic> parsedJson) {
-    id = parsedJson['id'];
+    id = parsedJson['_id'];
     thumb = parsedJson['thumb'];
     name = parsedJson['name'];
     price = parsedJson['price'];
     quantity = parsedJson['quantity'];
   }
 
-  Map<String, String> toMap() {
-    return <String, String>{
-      "id": id,
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      "_id": id,
       "thumb": thumb,
       "name": name,
-      "price": "$price",
-      "quantity": "$quantity"
+      "price": price,
+      "quantity": quantity
     };
   }
 }

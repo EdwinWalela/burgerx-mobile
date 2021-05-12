@@ -10,8 +10,8 @@ class MenuTab extends StatelessWidget {
 
   Widget build(BuildContext context) {
     // Listen to menu stream
-    final bloc = MenuBlocProvider.of(context);
-    bloc.fetchMenu();
+    final menuBloc = MenuBlocProvider.of(context);
+    menuBloc.fetchMenu();
 
     return DefaultTabController(
       length: 3,
@@ -39,18 +39,18 @@ class MenuTab extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            buildBurgerTab(bloc),
-            buildDrinksrTab(bloc),
-            buildMealsTab(bloc),
+            buildBurgerTab(menuBloc),
+            buildDrinksrTab(menuBloc),
+            buildMealsTab(menuBloc),
           ],
         ),
       ),
     );
   }
 
-  Widget buildBurgerTab(MenuBloc bloc) {
+  Widget buildBurgerTab(MenuBloc menuBloc) {
     return StreamBuilder(
-      stream: bloc.items,
+      stream: menuBloc.items,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Scaffold(
@@ -80,9 +80,9 @@ class MenuTab extends StatelessWidget {
     );
   }
 
-  Widget buildDrinksrTab(MenuBloc bloc) {
+  Widget buildDrinksrTab(MenuBloc menuBloc) {
     return StreamBuilder(
-      stream: bloc.items,
+      stream: menuBloc.items,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Scaffold(
@@ -112,9 +112,9 @@ class MenuTab extends StatelessWidget {
     );
   }
 
-  Widget buildMealsTab(MenuBloc bloc) {
+  Widget buildMealsTab(MenuBloc menuBloc) {
     return StreamBuilder(
-      stream: bloc.items,
+      stream: menuBloc.items,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Scaffold(

@@ -8,18 +8,19 @@ class CartBloc extends Validators {
 
   // StreamControllers
   final _cart = BehaviorSubject<CartItem>();
-  final _dbCart = BehaviorSubject<List<CartItem>>();
+  final _dbCart = BehaviorSubject<List>();
 
   // Getters
   Function(CartItem) get addItem => _cart.sink.add;
   Stream<CartItem> get cart => _cart.stream;
 
-  Function(List<CartItem>) get getCart => _dbCart.sink.add;
-  Stream<List<CartItem>> get dbCart => _dbCart.stream;
+  Function(List) get getCart => _dbCart.sink.add;
+  Stream<List> get dbCart => _dbCart.stream;
 
   addToCart() async {
     await _repository.addToCart(_cart.value);
-    await _repository.fetchCart();
+    final cart = await _repository.fetchCart();
+    getCart(cart);
   }
 
   dispose() {

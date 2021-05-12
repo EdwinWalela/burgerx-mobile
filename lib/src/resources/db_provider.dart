@@ -12,6 +12,7 @@ class DbProvider {
   init() async {
     Directory docsDirectory = await getApplicationDocumentsDirectory();
     final path = join(docsDirectory.path, "burgerx.db");
+    // await deleteDatabase(path);
     db = await openDatabase(
       path,
       version: 1,
@@ -27,8 +28,11 @@ class DbProvider {
               mobile VARCHAR(255),
               token VARCHAR(255)
             );
+          """,
+        );
 
-            CREATE TABLE cart
+        newDb.execute("""
+         CREATE TABLE cart
             (
               id INTEGER PRIMARY KEY,
               _id VARCHAR(255),
@@ -36,11 +40,13 @@ class DbProvider {
               name VARCHAR(255),
               price INTEGER,
               quantity INTEGER
-            )
-          """,
-        );
+            );
+            """);
       },
     );
+    // (await db.query('sqlite_master', columns: ['type', 'name'])).forEach((row) {
+    //   print(row.values);
+    // });
   }
 
   close() async {
@@ -75,17 +81,24 @@ class DbProvider {
       item.quantity = 1;
       await db.insert("cart", item.toMap());
     } else {
-      print(result[0]);
+      CartItem existingItem = CartItem.fromDB(result[0]);
+      existingItem.quantity++;
+      await db.update(
+        "cart",
+        existingItem.toMap(),
+        where: "_id=?",
+        whereArgs: [existingItem.id],
+      );
     }
   }
 
-  fetchCart() async {
+  Future<List> fetchCart() async {
     final result = await db.query(
       "cart",
-      columns: null,
+      columns: ["_id", "thumb", "name", "price", "quantity"],
     );
 
-    print(result);
+    return result;
   }
 
   Future<User> fetchUser() async {
