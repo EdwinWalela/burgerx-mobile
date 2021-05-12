@@ -55,12 +55,18 @@ class MenuTab extends StatelessWidget {
         if (!snapshot.hasData) {
           return Scaffold(
             body: Center(
-              child: Column(
+              child: Stack(
+                alignment: AlignmentDirectional.center,
                 children: [
-                  ItemHolder(),
-                  ItemHolder(),
-                  ItemHolder(),
-                  ItemHolder(),
+                  Column(
+                    children: [
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                    ],
+                  ),
+                  CircularProgressIndicator(),
                 ],
               ),
             ),
@@ -80,7 +86,22 @@ class MenuTab extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Scaffold(
-            body: Text('Loading...'),
+            body: Center(
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Column(
+                    children: [
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                    ],
+                  ),
+                  CircularProgressIndicator(),
+                ],
+              ),
+            ),
           );
         }
         final items =
@@ -97,7 +118,22 @@ class MenuTab extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Scaffold(
-            body: Text('Loading...'),
+            body: Center(
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Column(
+                    children: [
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                    ],
+                  ),
+                  CircularProgressIndicator(),
+                ],
+              ),
+            ),
           );
         }
         final items =

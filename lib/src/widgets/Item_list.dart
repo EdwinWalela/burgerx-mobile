@@ -8,6 +8,26 @@ class ItemList extends StatelessWidget {
   ItemList({this.items});
 
   Widget build(BuildContext context) {
+    if (items.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.no_food_outlined,
+              size: 50,
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+            ),
+            Text(
+              "No items available",
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+      );
+    }
     return ListView.builder(
       itemCount: items.length,
       itemBuilder: (context, index) {
