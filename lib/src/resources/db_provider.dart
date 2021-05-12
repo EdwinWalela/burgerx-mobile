@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:async';
 import '../models/User.dart';
+import '../models/Cart_Item.dart';
 
 class DbProvider {
   Database db;
@@ -59,6 +60,22 @@ class DbProvider {
         "users",
         user.toMap(),
       );
+    }
+  }
+
+  Future<void> addCartItem(CartItem item) async {
+    final result = await db.query(
+      "cart",
+      columns: null,
+      where: "_id = ?",
+      whereArgs: [item.id],
+    );
+
+    if (result.length == 0) {
+      item.quantity = 1;
+      await db.insert("cart", item.toMap());
+    } else {
+      print(result[0]);
     }
   }
 
