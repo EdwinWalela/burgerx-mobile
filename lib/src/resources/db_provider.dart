@@ -25,6 +25,16 @@ class DbProvider {
               address VARCHAR(255),
               mobile VARCHAR(255),
               token VARCHAR(255)
+            );
+
+            CREATE TABLE cart
+            (
+              id INTEGER PRIMARY KEY,
+              _id VARCHAR(255),
+              thumb VARCHAR(255),
+              name VARCHAR(255),
+              price INTEGER,
+              quantity INTEGER
             )
           """,
         );
