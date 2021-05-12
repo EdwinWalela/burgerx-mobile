@@ -44,7 +44,7 @@ class Repository {
   Future<List> fetchCart() async {
     await dbProvider.init();
     final cart = await dbProvider.fetchCart();
-    return cart;
+    return cart.isEmpty ? null : cart;
   }
 
   Future<void> addToCart(CartItem item) async {

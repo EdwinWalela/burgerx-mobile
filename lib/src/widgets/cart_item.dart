@@ -1,10 +1,10 @@
-import 'package:burgers/src/models/Food_Item.dart';
+import 'package:burgers/src/models/Cart_Item.dart';
 import 'package:flutter/material.dart';
 
-class CartItem extends StatelessWidget {
-  final FoodItem item;
+class CartItemCard extends StatelessWidget {
+  final CartItem item;
 
-  CartItem({this.item});
+  CartItemCard({this.item});
 
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +36,7 @@ class CartItem extends StatelessWidget {
     );
   }
 
-  Widget detailsColumn(FoodItem item) {
+  Widget detailsColumn(CartItem item) {
     return Wrap(
       spacing: 50,
       children: [

@@ -1,3 +1,4 @@
+import 'package:burgers/src/models/Cart_Item.dart';
 import 'package:burgers/src/models/Food_Item.dart';
 import 'cart_item.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class CartList extends StatelessWidget {
       itemBuilder: (context, index) {
         return Column(
           children: [
-            CartItem(item: items[index]),
+            CartItemCard(item: CartItem.fromDB(items[index])),
             Divider(
               height: 10,
             ),
