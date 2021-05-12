@@ -29,7 +29,7 @@ class OrderSummary extends StatelessWidget {
         Text(
           "Order Total",
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.grey[600],
           ),
@@ -37,7 +37,7 @@ class OrderSummary extends StatelessWidget {
         Text(
           "KSH.$total",
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.grey[600],
           ),
@@ -56,7 +56,7 @@ class OrderSummary extends StatelessWidget {
             Text(
               "Delivery",
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.grey[600],
               ),
@@ -95,7 +95,7 @@ class OrderSummary extends StatelessWidget {
         Text(
           "Order Total",
           style: TextStyle(
-            fontSize: 21,
+            fontSize: 19,
             fontWeight: FontWeight.bold,
             color: Colors.grey[700],
           ),
@@ -103,7 +103,7 @@ class OrderSummary extends StatelessWidget {
         Text(
           "KSH. $total",
           style: TextStyle(
-            fontSize: 21,
+            fontSize: 19,
             fontWeight: FontWeight.bold,
             color: Colors.grey[700],
           ),

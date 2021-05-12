@@ -57,15 +57,20 @@ class PaymentOptions extends StatelessWidget {
       constraints: BoxConstraints(
         minWidth: 110,
         minHeight: 80,
-        maxWidth: 165,
+        maxWidth: 160,
       ),
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(17),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey[500],
-            width: 2.0,
-          ),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.orange[600].withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
         child: Center(
           child: Column(
@@ -83,7 +88,7 @@ class PaymentOptions extends StatelessWidget {
               subtitle.length > 0
                   ? Text(
                       "$subtitle",
-                      style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      style: TextStyle(fontSize: 12, color: Colors.purple),
                     )
                   : Container()
             ],
