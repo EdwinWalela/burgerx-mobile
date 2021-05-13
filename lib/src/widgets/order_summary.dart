@@ -2,19 +2,28 @@ import 'package:flutter/material.dart';
 
 class OrderSummary extends StatelessWidget {
   final bool isCheckout;
+  final List items;
 
-  OrderSummary({this.isCheckout});
+  OrderSummary({this.isCheckout, this.items});
+
+  int orderSum() {
+    int sum = 0;
+    for (var item in this.items) {
+      sum += item["price"] * item["quantity"];
+    }
+    return sum;
+  }
 
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 25),
       child: Column(
         children: [
-          buildOrderTotal(1250),
+          buildOrderTotal(orderSum()),
           Container(margin: EdgeInsets.only(top: 15)),
-          buildDelivery('Langata, Maboko Cresent 37', 150),
+          buildDelivery('Langata, Maboko Cresent 37', 100),
           Container(margin: EdgeInsets.only(top: 15)),
-          buildSumTotal(1650),
+          buildSumTotal(orderSum() + 100),
           Container(margin: EdgeInsets.only(top: 20)),
           !isCheckout ? buildCheckoutButton(context) : Container(),
         ],

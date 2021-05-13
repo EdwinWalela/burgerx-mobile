@@ -18,7 +18,7 @@ class CartItemCard extends StatelessWidget {
         children: [
           thumbnail(item.thumb),
           title(item.name, bloc),
-          price(item.price),
+          price(item.price * this.item.quantity),
         ],
       ),
     );
@@ -40,7 +40,7 @@ class CartItemCard extends StatelessWidget {
 
   Widget title(String title, CartBloc bloc) {
     return Expanded(
-      flex: 3,
+      flex: 2,
       child: Column(
         children: [
           Text(

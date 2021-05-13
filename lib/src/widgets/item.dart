@@ -152,6 +152,13 @@ class Item extends StatelessWidget {
                 content: Text(
                   '${this._item.name} added to cart',
                 ),
+                action: SnackBarAction(
+                  label: "View Cart",
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/cart");
+                  },
+                ),
               ),
             );
           },

@@ -61,7 +61,7 @@ class CartScreen extends StatelessWidget {
               children: [
                 CartList(items: snapshot.data, bloc: bloc),
                 Divider(thickness: 2),
-                OrderSummary(isCheckout: false),
+                OrderSummary(isCheckout: false, items: snapshot.data),
               ],
             ),
           );

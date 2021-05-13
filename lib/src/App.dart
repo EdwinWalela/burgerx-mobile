@@ -26,9 +26,13 @@ class App extends StatelessWidget {
         '/cart': (BuildContext context) => CartBlocProvider(
               child: CartScreen(),
             ),
-        '/checkout': (BuildContext context) => CheckoutScreen(),
+        '/checkout': (BuildContext context) => CartBlocProvider(
+              child: CheckoutScreen(),
+            ),
       },
-      // home: CheckoutScreen(),
+      // home: CartBlocProvider(
+      //   child: CheckoutScreen(),
+      // ),
       // home: CartBlocProvider(
       //   child: CartScreen(),
       // ),
