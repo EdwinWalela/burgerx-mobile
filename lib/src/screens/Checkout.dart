@@ -1,4 +1,5 @@
 import 'package:burgers/src/blocs/cart_bloc_provider.dart';
+import 'package:burgers/src/blocs/payment_bloc_provider.dart';
 import 'package:flutter/material.dart';
 import '../widgets/order_summary.dart';
 import '../widgets/payment_options.dart';
@@ -59,7 +60,9 @@ class CheckoutScreen extends StatelessWidget {
                   thickness: 5,
                 ),
                 Container(margin: EdgeInsets.only(top: 10)),
-                PaymentOptions(),
+                PaymentBlocProvider(
+                  child: PaymentOptions(),
+                ),
                 Container(margin: EdgeInsets.only(top: 10)),
                 buildCompleteOrderButton(),
                 Container(margin: EdgeInsets.only(top: 20)),

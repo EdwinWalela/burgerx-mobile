@@ -30,15 +30,15 @@ class App extends StatelessWidget {
               child: CheckoutScreen(),
             ),
       },
-      home: CartBlocProvider(
-        child: CheckoutScreen(),
-      ),
+      // home: CartBlocProvider(
+      //   child: CheckoutScreen(),
+      // ),
       // home: CartBlocProvider(
       //   child: CartScreen(),
       // ),
-      // home: GlobalBlocProvider(
-      //   child: DecisionScreen(),
-      // ),
+      home: GlobalBlocProvider(
+        child: DecisionScreen(),
+      ),
     );
   }
 }
