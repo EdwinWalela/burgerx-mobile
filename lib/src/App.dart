@@ -1,4 +1,5 @@
 import 'package:burgers/src/blocs/cart_bloc_provider.dart';
+import 'package:burgers/src/screens/CreditScreen.dart';
 import 'package:burgers/src/screens/Login.dart';
 import 'package:burgers/src/screens/Register.dart';
 import 'package:flutter/material.dart';
@@ -29,16 +30,19 @@ class App extends StatelessWidget {
         '/checkout': (BuildContext context) => CartBlocProvider(
               child: CheckoutScreen(),
             ),
+        '/credits': (BuildContext context) => RegisterScreen(),
       },
-      // home: CartBlocProvider(
-      //   child: CheckoutScreen(),
-      // ),
-      // home: CartBlocProvider(
-      //   child: CartScreen(),
-      // ),
-      home: GlobalBlocProvider(
-        child: DecisionScreen(),
-      ),
+      home: CreditScreen(),
     );
+    // home: CartBlocProvider(
+    //   child: CheckoutScreen(),
+    // ),
+    // home: CartBlocProvider(
+    //   child: CartScreen(),
+    // ),
+    //   home: GlobalBlocProvider(
+    //     child: DecisionScreen(),
+    //   ),
+    // );
   }
 }
