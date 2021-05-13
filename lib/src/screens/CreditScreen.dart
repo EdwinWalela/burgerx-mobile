@@ -13,7 +13,7 @@ class CreditScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(35),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -22,18 +22,18 @@ class CreditScreen extends StatelessWidget {
               color: Colors.orange[600],
               size: 60,
             ),
-            Container(margin: EdgeInsets.only(top: 30)),
+            Container(margin: EdgeInsets.only(top: 40)),
             Text(
               "Thanks For Reaching This Far",
               style: TextStyle(fontSize: 20),
             ),
-            Container(margin: EdgeInsets.only(top: 10)),
+            Container(margin: EdgeInsets.only(top: 20)),
             Text(
               "This is a sample app built with Flutter implementing basic functionalities",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 15),
             ),
-            Container(margin: EdgeInsets.only(top: 10)),
+            Container(margin: EdgeInsets.only(top: 20)),
             Text(
               "Source code can be found on my Github",
               style: TextStyle(fontSize: 17),
@@ -45,7 +45,29 @@ class CreditScreen extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
+            buildHomeButton(context)
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildHomeButton(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.orange[600],
+        ),
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, '/menu');
+        },
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Text(
+            "Continue Shoppint",
+            style: TextStyle(fontSize: 15),
+          ),
         ),
       ),
     );
