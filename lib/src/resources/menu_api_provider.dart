@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:http/http.dart' show Client;
 import 'dart:convert';
 import '../models/Food_Item.dart';
@@ -9,7 +11,14 @@ class MenuAPIProvider {
   Future<List> fetchMenu() async {
     var url = Uri.parse('$_baseURL/menu');
 
-    final response = await client.get(url);
+    var response;
+
+    try {
+      response = await client.get(url);
+    } on SocketException catch (_) {
+      return ["error"];
+    }
+
     final List parsedList = json.decode(response.body);
     // final menu = List.from(parsedList).cast<FoodItem>();
 

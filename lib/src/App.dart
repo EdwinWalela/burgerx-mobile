@@ -32,17 +32,16 @@ class App extends StatelessWidget {
             ),
         '/credits': (BuildContext context) => CreditScreen(),
       },
-      home: CreditScreen(),
+
+      // home: CartBlocProvider(
+      //   child: CheckoutScreen(),
+      // ),
+      // home: CartBlocProvider(
+      //   child: CartScreen(),
+      // ),
+      home: GlobalBlocProvider(
+        child: DecisionScreen(),
+      ),
     );
-    // home: CartBlocProvider(
-    //   child: CheckoutScreen(),
-    // ),
-    // home: CartBlocProvider(
-    //   child: CartScreen(),
-    // ),
-    //   home: GlobalBlocProvider(
-    //     child: DecisionScreen(),
-    //   ),
-    // );
   }
 }

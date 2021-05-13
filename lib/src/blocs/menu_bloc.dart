@@ -12,10 +12,11 @@ class MenuBloc extends Validators {
 
   // Getters
   Function(List) get addItems => _menu.sink.add;
-  Stream<List> get items => _menu.stream;
+  Stream<List> get items => _menu.stream.transform(responseValidator);
 
   void fetchMenu() async {
     final menu = await _repository.fetchMenu();
+
     addItems(menu);
   }
 

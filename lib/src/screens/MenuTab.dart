@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'MenuTab/Burgers.dart';
 import 'MenuTab/Drinks.dart';
@@ -53,6 +55,47 @@ class MenuTab extends StatelessWidget {
     return StreamBuilder(
       stream: menuBloc.items,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasError) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.orange[600],
+                  duration: Duration(minutes: 5),
+                  content: Text(
+                    'You are offline',
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  action: SnackBarAction(
+                    label: "Refresh",
+                    textColor: Colors.white,
+                    onPressed: () {
+                      menuBloc.fetchMenu();
+                    },
+                  ),
+                ),
+              );
+            },
+          );
+          return Scaffold(
+            body: Center(
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Column(
+                    children: [
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        }
         if (!snapshot.hasData) {
           return Scaffold(
             body: Center(
@@ -85,6 +128,47 @@ class MenuTab extends StatelessWidget {
     return StreamBuilder(
       stream: menuBloc.items,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasError) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.orange[600],
+                  duration: Duration(minutes: 5),
+                  content: Text(
+                    'You are offline',
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  action: SnackBarAction(
+                    label: "Refresh",
+                    textColor: Colors.white,
+                    onPressed: () {
+                      menuBloc.fetchMenu();
+                    },
+                  ),
+                ),
+              );
+            },
+          );
+          return Scaffold(
+            body: Center(
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Column(
+                    children: [
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        }
         if (!snapshot.hasData) {
           return Scaffold(
             body: Center(
@@ -117,6 +201,47 @@ class MenuTab extends StatelessWidget {
     return StreamBuilder(
       stream: menuBloc.items,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasError) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.orange[600],
+                  duration: Duration(minutes: 5),
+                  content: Text(
+                    'You are offline',
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  action: SnackBarAction(
+                    label: "Refresh",
+                    textColor: Colors.white,
+                    onPressed: () {
+                      menuBloc.fetchMenu();
+                    },
+                  ),
+                ),
+              );
+            },
+          );
+          return Scaffold(
+            body: Center(
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Column(
+                    children: [
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                      ItemHolder(),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        }
         if (!snapshot.hasData) {
           return Scaffold(
             body: Center(

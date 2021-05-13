@@ -81,4 +81,14 @@ class Validators {
       }
     },
   );
+
+  final responseValidator = StreamTransformer<List, List>.fromHandlers(
+    handleData: (menu, sink) {
+      if (menu.length == 1 && menu[0] == "error") {
+        sink.addError("No internet");
+      } else {
+        sink.add(menu);
+      }
+    },
+  );
 }
