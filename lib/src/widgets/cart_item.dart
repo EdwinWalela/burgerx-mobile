@@ -1,10 +1,12 @@
+import 'package:burgers/src/blocs/cart_bloc_provider.dart';
 import 'package:burgers/src/models/Cart_Item.dart';
 import 'package:flutter/material.dart';
 
 class CartItemCard extends StatelessWidget {
   final CartItem item;
+  final CartBloc bloc;
 
-  CartItemCard({this.item});
+  CartItemCard({this.item, this.bloc});
 
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +17,7 @@ class CartItemCard extends StatelessWidget {
       child: Row(
         children: [
           thumbnail(item.thumb),
-          title(item.name),
+          title(item.name, bloc),
           price(item.price),
         ],
       ),
@@ -36,18 +38,7 @@ class CartItemCard extends StatelessWidget {
     );
   }
 
-  Widget detailsColumn(CartItem item) {
-    return Wrap(
-      spacing: 50,
-      children: [
-        title(item.name),
-        price(item.price),
-        // addToCartBtn(),
-      ],
-    );
-  }
-
-  Widget title(String title) {
+  Widget title(String title, CartBloc bloc) {
     return Expanded(
       flex: 3,
       child: Column(
@@ -72,11 +63,14 @@ class CartItemCard extends StatelessWidget {
                 child: Icon(
                   Icons.add_circle,
                 ),
-                onTap: () {},
+                onTap: () {
+                  bloc.addItem(this.item);
+                  bloc.addToCart();
+                },
               ),
               Container(margin: EdgeInsets.only(right: 10)),
               Text(
-                '3',
+                '${this.item.quantity}',
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
@@ -88,7 +82,9 @@ class CartItemCard extends StatelessWidget {
                 child: Icon(
                   Icons.remove_circle,
                 ),
-                onTap: () {},
+                onTap: () {
+                  bloc.removeFromCart(this.item);
+                },
               ),
             ],
           ),

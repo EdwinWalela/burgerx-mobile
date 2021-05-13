@@ -19,12 +19,16 @@ class CartBloc extends Validators {
 
   addToCart() async {
     await _repository.addToCart(_cart.value);
-    fetchCart();
+    await fetchCart();
+  }
+
+  removeFromCart(CartItem item) async {
+    await _repository.removeFromCart(item);
+    await fetchCart();
   }
 
   fetchCart() async {
     final cart = await _repository.fetchCart();
-    print(cart);
     getCart(cart);
   }
 

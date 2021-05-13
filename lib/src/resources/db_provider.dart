@@ -69,6 +69,20 @@ class DbProvider {
     }
   }
 
+  Future<void> removeFromCart(CartItem item) async {
+    bool isEmpty = item.quantity-- == 1;
+    if (isEmpty) {
+      await db.delete("cart", where: "_id = ?", whereArgs: [item.id]);
+    } else {
+      await db.update(
+        "cart",
+        item.toMap(),
+        where: "_id=?",
+        whereArgs: [item.id],
+      );
+    }
+  }
+
   Future<void> addCartItem(CartItem item) async {
     final result = await db.query(
       "cart",

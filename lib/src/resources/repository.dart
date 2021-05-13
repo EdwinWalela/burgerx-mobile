@@ -41,6 +41,11 @@ class Repository {
     return menuProvider.fetchMenu();
   }
 
+  Future<void> removeFromCart(CartItem item) async {
+    await dbProvider.init();
+    await dbProvider.removeFromCart(item);
+  }
+
   Future<List> fetchCart() async {
     await dbProvider.init();
     final cart = await dbProvider.fetchCart();

@@ -60,7 +60,7 @@ class CartScreen extends StatelessWidget {
           return SingleChildScrollView(
             child: Column(
               children: [
-                CartList(items: snapshot.data),
+                CartList(items: snapshot.data, bloc: bloc),
                 Divider(thickness: 2),
                 OrderSummary(isCheckout: false),
               ],
