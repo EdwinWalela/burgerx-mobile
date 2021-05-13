@@ -39,7 +39,7 @@ class LoginBloc extends Validators {
 
   submit() async {
     changeLoading(true);
-    final String email = _email.value;
+    final String email = _email.value.trim();
     final String password = _password.value;
 
     final User user = User(email: email, password: password);

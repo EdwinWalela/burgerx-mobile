@@ -61,7 +61,7 @@ class RegisterBloc extends Validators {
     //@TODO: add 'true' to is_loading stream
     changeLoading(true);
 
-    final userEmail = _email.value;
+    final userEmail = _email.value.trim();
     final userPassword = _password.value;
     final userName = _username.value;
 

@@ -87,6 +87,7 @@ class LoginForm extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return TextField(
           onChanged: bloc.changeEmail,
+          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
               labelText: "Email Address",
               hintText: "john@mail.com",
