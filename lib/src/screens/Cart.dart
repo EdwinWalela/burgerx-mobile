@@ -32,7 +32,6 @@ class CartScreen extends StatelessWidget {
       body: StreamBuilder(
         stream: bloc.dbCart,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          // print(snapshot.data);
           if (!snapshot.hasData) {
             return Center(
               child: Column(

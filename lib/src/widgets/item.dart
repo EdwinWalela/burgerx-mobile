@@ -32,7 +32,7 @@ class Item extends StatelessWidget {
           Container(margin: EdgeInsets.only(right: 10.0)),
           thumbnail(_item.thumb),
           Container(margin: EdgeInsets.only(right: 20.0)),
-          detailsColumn(_item, bloc),
+          detailsColumn(_item, bloc, context),
         ],
       ),
     );
@@ -50,7 +50,7 @@ class Item extends StatelessWidget {
     );
   }
 
-  Widget detailsColumn(FoodItem item, CartBloc bloc) {
+  Widget detailsColumn(FoodItem item, CartBloc bloc, BuildContext context) {
     return Expanded(
       flex: 3,
       child: Column(
@@ -61,7 +61,7 @@ class Item extends StatelessWidget {
           Container(margin: EdgeInsets.only(bottom: 5.0)),
           description(item.ingredients),
           Container(margin: EdgeInsets.only(bottom: 5.0)),
-          priceStarsRow(item.stars, item.price, bloc),
+          priceStarsRow(item.stars, item.price, bloc, context),
           Container(margin: EdgeInsets.only(bottom: 5.0)),
           // addToCartBtn(),
         ],
@@ -117,19 +117,20 @@ class Item extends StatelessWidget {
     );
   }
 
-  Widget priceStarsRow(double starsValue, int priceValue, CartBloc bloc) {
+  Widget priceStarsRow(
+      double starsValue, int priceValue, CartBloc bloc, BuildContext context) {
     return Row(
       children: [
         stars(starsValue),
         Container(margin: EdgeInsets.only(right: 10)),
         price(priceValue),
         Container(margin: EdgeInsets.only(right: 40)),
-        addToCartBtn(bloc),
+        addToCartBtn(bloc, context),
       ],
     );
   }
 
-  Widget addToCartBtn(CartBloc bloc) {
+  Widget addToCartBtn(CartBloc bloc, BuildContext context) {
     return TextButton(
       onPressed: () {
         bloc.addItem(
@@ -141,6 +142,20 @@ class Item extends StatelessWidget {
               thumb: this._item.thumb),
         );
         bloc.addToCart();
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.orange[600],
+                // duration: Duration(seconds: 4),
+                content: Text(
+                  '${this._item.name} added to cart',
+                ),
+              ),
+            );
+          },
+        );
       },
       child: Icon(
         Icons.shopping_bag_outlined,
