@@ -64,7 +64,7 @@ class CheckoutScreen extends StatelessWidget {
                   child: PaymentOptions(),
                 ),
                 Container(margin: EdgeInsets.only(top: 10)),
-                buildCompleteOrderButton(),
+                buildCompleteOrderButton(context),
                 Container(margin: EdgeInsets.only(top: 20)),
               ],
             ),
@@ -103,7 +103,7 @@ class CheckoutScreen extends StatelessWidget {
     );
   }
 
-  Widget buildCompleteOrderButton() {
+  Widget buildCompleteOrderButton(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 20, right: 20),
       child: SizedBox(
@@ -112,7 +112,9 @@ class CheckoutScreen extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             primary: Colors.orange[600],
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/credits');
+          },
           child: Padding(
             padding: EdgeInsets.all(10),
             child: Text(

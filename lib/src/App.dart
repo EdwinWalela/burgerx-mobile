@@ -30,7 +30,7 @@ class App extends StatelessWidget {
         '/checkout': (BuildContext context) => CartBlocProvider(
               child: CheckoutScreen(),
             ),
-        '/credits': (BuildContext context) => RegisterScreen(),
+        '/credits': (BuildContext context) => CreditScreen(),
       },
       home: CreditScreen(),
     );

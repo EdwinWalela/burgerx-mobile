@@ -1,7 +1,12 @@
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreditScreen extends StatelessWidget {
+  final _url = "https://github.com/EdwinWalela/burgerx-mobile";
+
+  void _launchURL() async => await launch(_url);
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -44,6 +49,7 @@ class CreditScreen extends StatelessWidget {
                 size: 30,
                 color: Colors.blue,
               ),
+              onTap: _launchURL,
             ),
             buildHomeButton(context)
           ],
